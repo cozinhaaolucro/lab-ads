@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
 import { LegalModal } from './LegalModal';
 
 export const Footer = () => {
