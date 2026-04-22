@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==============================
+   BASE LAYER
+   ============================== */
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 240, 255, 0.15) transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-textMain font-sans antialiased overflow-x-hidden;
+  }
+
+  ::selection {
+    @apply bg-neonCyan text-black;
+  }
+
+  html.cursor-none, html.cursor-none * {
+    cursor: none !important;
+  }
+}
+
+/* ==============================
+   COMPONENT LAYER
+   ============================== */
+@layer components {
+  .bg-grid {
+    background-size: 60px 60px;
+  }
+
+  .glass-panel {
+    @apply bg-surface/60 backdrop-blur-xl border border-white/[0.06] rounded-sm;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, #ffffff 0%, #94A3B8 100%);
+  }
+
+  .glow-green {
+    box-shadow: 0 0 40px rgba(57, 255, 20, 0.08), 0 0 80px rgba(57, 255, 20, 0.04);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 40px rgba(0, 240, 255, 0.06), 0 0 80px rgba(0, 240, 255, 0.03);
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(57, 255, 20, 0.2), transparent 40%, transparent 60%, rgba(0, 240, 255, 0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+
+  /* Animated pulsing dot */
+  .pulse-dot {
+    @apply relative;
+  }
+  .pulse-dot::after {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-neonCyan;
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Section divider accent line */
+  .section-line {
+    @apply relative;
+  }
+  .section-line::after {
+    content: '';
+    @apply absolute left-0 bottom-0 h-px bg-gradient-to-r from-neonCyan/30 via-neonCyan/10 to-transparent;
+    width: 200px;
+  }
+}
+
+/* ==============================
+   KEYFRAMES
+   ============================== */
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes data-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes counter-glow {
+  0%, 100% { text-shadow: 0 0 20px rgba(57, 255, 20, 0.1); }
+  50% { text-shadow: 0 0 40px rgba(57, 255, 20, 0.25); }
+}
+
+/* ==============================
+   UTILITY ANIMATIONS
+   ============================== */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-data-flow {
+  background-size: 200% 100%;
+  animation: data-flow 3s linear infinite;
+}
+
+.animate-counter-glow {
+  animation: counter-glow 3s ease-in-out infinite;
+}
+
+/* ==============================
+   SCANLINE OVERLAY EFFECT
+   ============================== */
+.scanline-overlay::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.03), transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ==============================
+   CTA HOVER SHIMMER
+   ============================== */
+.cta-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.cta-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+}
+.cta-shimmer:hover::after {
+  animation: shimmer 0.6s ease-out forwards;
+}
+
+/* ==============================
+   NOISE TEXTURE (subtle grain)
+   ============================== */
+.noise-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.012;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* ==============================
+   SCROLLBAR CUSTOM (Webkit)
+   ============================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030305;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(57, 255, 20, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(57, 255, 20, 0.3);
+}
