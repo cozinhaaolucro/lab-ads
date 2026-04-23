@@ -20,6 +20,7 @@ const Sparkline = ({ active, variant }: { active: boolean, variant: number }) =>
   return (
     <div className="absolute inset-x-0 bottom-0 top-1/3 z-0 overflow-hidden opacity-20 pointer-events-none flex items-end">
       <svg viewBox="0 0 100 50" preserveAspectRatio="none" className="w-full h-full text-neonCyan">
+        <title>Gráfico Sparkline</title>
         <defs>
           <linearGradient id={`gradient-${variant}`} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="currentColor" stopOpacity="0.4" />

@@ -62,6 +62,7 @@ const ChaoticGraph = memo(({ active, isMobile }: { active: boolean; isMobile: bo
 
   return (
     <svg viewBox="0 0 200 70" className="w-full h-full overflow-visible" preserveAspectRatio="none">
+      <title>Gráfico de Caos</title>
       <defs>
         <linearGradient id="chaosFill" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#ef4444" stopOpacity="0.2" />
@@ -119,6 +120,7 @@ const ChaoticGraph = memo(({ active, isMobile }: { active: boolean; isMobile: bo
 /* ─── Stable Growth Line (Filled Area) ─── */
 const GrowthGraph = memo(({ active }: { active: boolean }) => (
   <svg viewBox="0 0 200 70" className="w-full h-full overflow-visible" preserveAspectRatio="none">
+    <title>Gráfico de Crescimento</title>
     <defs>
       <linearGradient id="growthFill" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stopColor="#00F0FF" stopOpacity="0.3" />

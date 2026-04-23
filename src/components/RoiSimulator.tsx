@@ -137,6 +137,7 @@ export const RoiSimulator = () => {
             <span className="absolute bottom-[-20px] right-0 text-[8px] font-mono text-textMuted/40">TEMPO (DIAS)</span>
             
             <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full text-neonCyan overflow-visible">
+              <title>Gráfico de Simulação de Receita</title>
               <defs>
                 <linearGradient id="sim-gradient" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="currentColor" stopOpacity="0.3" />

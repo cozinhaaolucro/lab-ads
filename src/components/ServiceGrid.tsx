@@ -34,6 +34,7 @@ const RadarAnim = memo(() => (
       viewBox="0 0 100 100"
       className="w-full h-full text-neonCyan animate-[spin_20s_linear_infinite]"
     >
+      <title>Animação de Radar</title>
       <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="0.5" fill="none" strokeDasharray="2 4" />
       <circle cx="50" cy="50" r="35" stroke="currentColor" strokeWidth="0.5" fill="none" />
       <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" strokeWidth="0.5" />
