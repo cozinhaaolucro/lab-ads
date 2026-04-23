@@ -4,8 +4,6 @@ import { X } from 'lucide-react';
 import { useContactForm } from './ContactFormContext';
 import { pushToDataLayer } from '../lib/gtm';
 
-const WPP_NUMBER = '5541998498430';
-
 const investmentOptions = [
   { value: '5k-10k', label: 'R$ 5.000 – R$ 10.000' },
   { value: '10k-25k', label: 'R$ 10.000 – R$ 25.000' },
@@ -84,15 +82,7 @@ export const ContactFormModal = () => {
     const investmentLabel =
       investmentOptions.find((o) => o.value === form.investment)?.label || 'Não informado';
     
-    const messageBody = `Novo Lead — LabAds\n\n` +
-        `Nome: ${form.name}\n` +
-        `E-mail: ${form.email}\n` +
-        `WhatsApp: ${form.phone}\n` +
-        `Empresa: ${form.company}\n` +
-        `Investimento Mensal: ${investmentLabel}\n\n` +
-        `Solicito um diagnóstico estratégico gratuito.`;
 
-    const whatsappMessage = encodeURIComponent(messageBody);
 
     setSubmitted(true);
     

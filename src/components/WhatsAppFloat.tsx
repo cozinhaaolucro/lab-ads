@@ -34,12 +34,6 @@ export const WhatsAppFloat = () => {
     e.preventDefault();
     if (!isValid) return;
 
-    const messageBody = `Novo Lead Rápido (WhatsApp Float)\n\n` +
-      `Nome: ${name}\n` +
-      `E-mail: ${email}\n` +
-      `WhatsApp: ${phone}\n\n` +
-      `Gostaria de saber mais sobre os serviços da LabAds.`;
-
     const text = encodeURIComponent(
       `Olá! Meu nome é ${name} e acabei de preencher o formulário no site. Gostaria de falar com a equipe da LabAds.`
     );
