@@ -48,7 +48,7 @@ const VerticalParticle = memo(({ delay = 0 }: { delay?: number }) => (
 ));
 
 /* ─── Chaotic Line (Filled Area) ─── */
-const ChaoticGraph = memo(({ active }: { active: boolean }) => {
+const ChaoticGraph = memo(({ active, isMobile }: { active: boolean; isMobile: boolean }) => {
   const redPaths = [
     'M0,55 L15,20 L30,65 L45,35 L60,58 L75,15 L90,50 L105,25 L120,60 L135,40 L150,10 L165,55 L180,30 L200,45',
     'M0,30 L15,60 L30,15 L45,50 L60,25 L75,65 L90,35 L105,55 L120,10 L135,50 L150,40 L165,20 L180,60 L200,35',
@@ -77,8 +77,8 @@ const ChaoticGraph = memo(({ active }: { active: boolean }) => {
       <motion.path
         fill="url(#chaosFill)"
         initial={{ opacity: 0 }}
-        animate={active ? { opacity: 1, d: redArea } : { opacity: 0 }}
-        transition={{ 
+        animate={active ? { opacity: 1, d: isMobile ? redArea[0] : redArea } : { opacity: 0 }}
+        transition={isMobile ? { opacity: { duration: 1, delay: 0.5 } } : { 
           opacity: { duration: 1, delay: 0.5 },
           d: { duration: 12, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }
         }}
@@ -90,8 +90,8 @@ const ChaoticGraph = memo(({ active }: { active: boolean }) => {
         strokeWidth="1.5"
         fill="none"
         initial={{ pathLength: 0, opacity: 0 }}
-        animate={active ? { pathLength: 1, opacity: 1, d: redPaths } : { pathLength: 0, opacity: 0 }}
-        transition={{ 
+        animate={active ? { pathLength: 1, opacity: 1, d: isMobile ? redPaths[0] : redPaths } : { pathLength: 0, opacity: 0 }}
+        transition={isMobile ? { opacity: { duration: 0.8 }, pathLength: { duration: 1.5, ease: 'easeOut' } } : { 
           opacity: { duration: 0.8 },
           pathLength: { duration: 1.5, ease: 'easeOut' },
           d: { duration: 12, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }
@@ -105,8 +105,8 @@ const ChaoticGraph = memo(({ active }: { active: boolean }) => {
         strokeWidth="1"
         fill="none"
         initial={{ pathLength: 0, opacity: 0 }}
-        animate={active ? { pathLength: 1, opacity: 0.6, d: orangePaths } : { pathLength: 0, opacity: 0 }}
-        transition={{ 
+        animate={active ? { pathLength: 1, opacity: 0.6, d: isMobile ? orangePaths[0] : orangePaths } : { pathLength: 0, opacity: 0 }}
+        transition={isMobile ? { opacity: { duration: 0.8, delay: 0.2 }, pathLength: { duration: 1.8, ease: 'easeOut', delay: 0.2 } } : { 
           opacity: { duration: 0.8, delay: 0.2 },
           pathLength: { duration: 1.8, ease: 'easeOut', delay: 0.2 },
           d: { duration: 10, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }
@@ -164,12 +164,12 @@ const GrowthGraph = memo(({ active }: { active: boolean }) => (
 ));
 
 /* ─── Processing Node ─── */
-const ProcessingNode = memo(({ label, delay }: { label: string; delay: number }) => (
+const ProcessingNode = memo(({ label, delay, isMobile }: { label: string; delay: number; isMobile: boolean }) => (
   <motion.div
     className="flex items-center gap-2.5 px-3 py-1.5 rounded-sm bg-neonCyan/[0.03] border border-neonCyan/10 backdrop-blur-sm"
     initial={{ opacity: 0, x: -5 }}
-    animate={{ opacity: [0, 1, 1, 0.4], x: 0 }}
-    transition={{ delay, duration: 2.5, repeat: Infinity, repeatDelay: 1.5 }}
+    animate={{ opacity: isMobile ? 1 : [0, 1, 1, 0.4], x: 0 }}
+    transition={isMobile ? { delay, duration: 0.5 } : { delay, duration: 2.5, repeat: Infinity, repeatDelay: 1.5 }}
   >
     <span className="w-1.5 h-1.5 rounded-full bg-neonCyan/80 glow-cyan" />
     <span className="font-mono text-[9px] lg:text-[10px] text-neonCyan/90 uppercase tracking-widest">
@@ -181,6 +181,14 @@ const ProcessingNode = memo(({ label, delay }: { label: string; delay: number })
 export const DataVisualization = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const roas = useTickingNumber(382, 0, 2200, isInView);
   const cpa = useTickingNumber(42, 0, 2000, isInView);
@@ -232,7 +240,7 @@ export const DataVisualization = () => {
           </div>
 
           <div className="h-36 lg:h-44 w-full mb-3 relative">
-            <ChaoticGraph active={isInView} />
+            <ChaoticGraph active={isInView} isMobile={isMobile} />
           </div>
 
           <p className="font-display text-sm lg:text-[15px] text-white/60 leading-relaxed tracking-wide relative z-10">
@@ -252,8 +260,8 @@ export const DataVisualization = () => {
         <div className="flex flex-col items-center justify-center py-6 md:py-0 relative z-10">
           {/* Core Node */}
           <motion.div
-            animate={{ boxShadow: ['0 0 30px rgba(0,240,255,0.1)', '0 0 60px rgba(0,240,255,0.2)', '0 0 30px rgba(0,240,255,0.1)'] }}
-            transition={{ duration: 3, repeat: Infinity }}
+            animate={isMobile ? {} : { boxShadow: ['0 0 30px rgba(0,240,255,0.1)', '0 0 60px rgba(0,240,255,0.2)', '0 0 30px rgba(0,240,255,0.1)'] }}
+            transition={isMobile ? {} : { duration: 3, repeat: Infinity }}
             className="w-28 h-28 lg:w-36 lg:h-36 rounded-full border border-neonCyan/30 bg-surface/80 backdrop-blur-xl flex flex-col items-center justify-center relative shadow-2xl shadow-black/60"
           >
             <div className="absolute inset-2 rounded-full border border-neonCyan/20 border-dashed animate-[spin_8s_linear_infinite]" />
@@ -262,8 +270,8 @@ export const DataVisualization = () => {
           </motion.div>
           
           <div className="mt-8 flex flex-col items-center gap-3">
-            <ProcessingNode label="modelagem matemática" delay={0} />
-            <ProcessingNode label="otimização contínua" delay={1.2} />
+            <ProcessingNode label="modelagem matemática" delay={0} isMobile={isMobile} />
+            <ProcessingNode label="otimização contínua" delay={1.2} isMobile={isMobile} />
           </div>
         </div>
 
