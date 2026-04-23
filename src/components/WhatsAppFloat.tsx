@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowUpRight } from 'lucide-react';
 import { useContactForm } from './ContactFormContext';
+import { pushToDataLayer } from '../lib/gtm';
 
 const WPP = '5541998498430';
 
@@ -37,6 +38,13 @@ export const WhatsAppFloat = () => {
       `Olá! Meu nome é ${name}.\n📧 ${email}\n📱 ${phone}\n\nGostaria de saber mais sobre os serviços da LabAds.`
     );
     window.open(`https://wa.me/${WPP}?text=${text}`, '_blank');
+    
+    // GTM Event
+    pushToDataLayer({
+      event: 'whatsapp_start',
+      form_id: 'whatsapp_float'
+    });
+
     setName(''); setPhone(''); setEmail(''); setIsOpen(false);
   };
 
@@ -69,40 +77,40 @@ export const WhatsAppFloat = () => {
             </div>
 
             {/* Form */}
-            <form onSubmit={submit} className="p-4 space-y-3">
+            <form onSubmit={submit} id="wpp-float-form" className="p-4 space-y-3">
               <p className="text-white text-sm font-display font-semibold">Fale conosco agora</p>
               <p className="text-textMuted text-[11px] leading-relaxed">
                 Preencha seus dados para iniciar conversa.
               </p>
 
               <div>
-                <label className="block font-mono text-[9px] text-textMuted uppercase tracking-wider mb-1.5">
+                <label htmlFor="wpp-name" className="block font-mono text-[9px] text-textMuted uppercase tracking-wider mb-1.5">
                   Nome <span className="text-neonGreen/60">*</span>
                 </label>
                 <input
-                  type="text" value={name} onChange={(e) => setName(e.target.value)} required
+                  type="text" id="wpp-name" value={name} onChange={(e) => setName(e.target.value)} required
                   className="w-full bg-surface/60 border border-white/[0.08] text-white text-xs px-3 py-2.5 font-mono rounded-sm outline-none focus:border-neonGreen/40 transition-colors placeholder:text-white/15"
                   placeholder="Seu nome"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[9px] text-textMuted uppercase tracking-wider mb-1.5">
+                <label htmlFor="wpp-phone" className="block font-mono text-[9px] text-textMuted uppercase tracking-wider mb-1.5">
                   Número <span className="text-neonGreen/60">*</span>
                 </label>
                 <input
-                  type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required
+                  type="tel" id="wpp-phone" value={phone} onChange={(e) => setPhone(e.target.value)} required
                   className="w-full bg-surface/60 border border-white/[0.08] text-white text-xs px-3 py-2.5 font-mono rounded-sm outline-none focus:border-neonGreen/40 transition-colors placeholder:text-white/15"
                   placeholder="(41) 99999-9999"
                 />
               </div>
 
               <div>
-                <label className="block font-mono text-[9px] text-textMuted uppercase tracking-wider mb-1.5">
+                <label htmlFor="wpp-email" className="block font-mono text-[9px] text-textMuted uppercase tracking-wider mb-1.5">
                   E-mail <span className="text-neonGreen/60">*</span>
                 </label>
                 <input
-                  type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
+                  type="email" id="wpp-email" value={email} onChange={(e) => setEmail(e.target.value)} required
                   className="w-full bg-surface/60 border border-white/[0.08] text-white text-xs px-3 py-2.5 font-mono rounded-sm outline-none focus:border-neonGreen/40 transition-colors placeholder:text-white/15"
                   placeholder="seu@email.com"
                 />
@@ -110,6 +118,7 @@ export const WhatsAppFloat = () => {
 
               <button
                 type="submit"
+                id="wpp-float-submit"
                 disabled={!isValid}
                 className="w-full bg-neonGreen text-black py-2.5 font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 rounded-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed hover:bg-white disabled:hover:bg-neonGreen"
               >
@@ -125,6 +134,7 @@ export const WhatsAppFloat = () => {
       {/* Float Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
+        id="wpp-float-toggle"
         className="relative w-14 h-14 rounded-full bg-neonGreen text-black flex items-center justify-center shadow-lg shadow-neonGreen/20 hover:shadow-neonGreen/40 hover:scale-105 transition-all"
         whileTap={{ scale: 0.9 }}
         initial={{ scale: 0, opacity: 0 }}

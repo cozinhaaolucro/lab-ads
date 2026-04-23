@@ -55,6 +55,7 @@ export const Hero = () => {
             <MagneticButton>
               <button
                 onClick={open}
+                id="hero-cta-button"
                 className="group cta-shimmer inline-flex items-center gap-3 bg-neonCyan text-black px-8 py-4 font-mono font-bold uppercase tracking-wider hover:bg-white transition-colors glow-cyan"
               >
                 <span>Diagnóstico Estratégico</span>
@@ -63,6 +64,7 @@ export const Hero = () => {
             </MagneticButton>
             <a
               href="#metodologia"
+              id="hero-methodology-link"
               className="group inline-flex items-center gap-3 border border-white/10 text-textMuted px-8 py-4 font-mono text-sm uppercase tracking-wider hover:border-white/30 hover:text-white transition-all"
             >
               <span>Ver Metodologia</span>

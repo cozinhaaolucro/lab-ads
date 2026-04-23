@@ -44,6 +44,7 @@ export const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
+              id={`nav-link-${link.label.toLowerCase()}`}
               className="text-sm font-mono text-textMuted hover:text-white transition-colors uppercase tracking-wider relative group"
             >
               {link.label}
@@ -52,6 +53,7 @@ export const Navbar = () => {
           ))}
           <button
             onClick={open}
+            id="nav-cta-button"
             className="cta-shimmer text-sm font-mono text-black bg-neonCyan px-5 py-2.5 uppercase tracking-wider font-semibold hover:bg-white transition-colors flex items-center gap-2"
           >
             Iniciar Protocolo

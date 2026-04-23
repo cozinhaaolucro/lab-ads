@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, type ReactNode, type MouseEvent } from 'react';
+import { pushToDataLayer } from '../lib/gtm';
 
 interface ContactFormContextType {
   isOpen: boolean;
@@ -27,6 +28,12 @@ export const ContactFormProvider = ({ children }: { children: ReactNode }) => {
       setCoords(null);
     }
     setIsOpen(true);
+    
+    // GTM Event
+    pushToDataLayer({
+      event: 'open_form',
+      location: e && e.currentTarget ? e.currentTarget.innerText || 'button' : 'unknown'
+    });
   };
 
   const close = () => {

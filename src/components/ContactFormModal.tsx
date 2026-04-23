@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useContactForm } from './ContactFormContext';
+import { pushToDataLayer } from '../lib/gtm';
 
 const WPP_NUMBER = '5541998498430';
 
@@ -92,6 +93,14 @@ export const ContactFormModal = () => {
         `Solicito um diagnóstico estratégico gratuito.`
     );
     setSubmitted(true);
+    
+    // GTM Event
+    pushToDataLayer({
+      event: 'generate_lead',
+      form_id: 'contact_modal',
+      investment_range: investmentLabel
+    });
+
     setTimeout(() => {
       window.open(`https://wa.me/${WPP_NUMBER}?text=${message}`, '_blank');
       setTimeout(() => {
@@ -155,17 +164,18 @@ export const ContactFormModal = () => {
                     Preencha os campos e receba uma análise completa do seu funil em até 30 minutos.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <Field label="Nome" value={form.name} onChange={(v) => updateField('name', v)} required />
-                    <Field label="E-mail" type="email" value={form.email} onChange={(v) => updateField('email', v)} required />
-                    <Field label="WhatsApp" value={form.phone} onChange={(v) => updateField('phone', v)} placeholder="(41) 99999-9999" required />
-                    <Field label="Empresa" value={form.company} onChange={(v) => updateField('company', v)} />
+                  <form onSubmit={handleSubmit} id="contact-form-main" className="space-y-5">
+                    <Field id="field-name" label="Nome" value={form.name} onChange={(v) => updateField('name', v)} required />
+                    <Field id="field-email" label="E-mail" type="email" value={form.email} onChange={(v) => updateField('email', v)} required />
+                    <Field id="field-phone" label="WhatsApp" value={form.phone} onChange={(v) => updateField('phone', v)} placeholder="(41) 99999-9999" required />
+                    <Field id="field-company" label="Empresa" value={form.company} onChange={(v) => updateField('company', v)} />
 
                     <div>
                       <label className="block font-mono text-[10px] text-textMuted uppercase tracking-wider mb-2">
                         Investimento Mensal em Mídia
                       </label>
                       <select
+                        id="field-investment"
                         value={form.investment}
                         onChange={(e) => updateField('investment', e.target.value)}
                         className="w-full bg-surface/60 border border-white/[0.08] text-white text-sm px-4 py-3 font-mono rounded-sm outline-none focus:border-neonCyan/40 transition-colors appearance-none cursor-pointer"
@@ -181,6 +191,7 @@ export const ContactFormModal = () => {
 
                     <button
                       type="submit"
+                      id="contact-form-submit"
                       disabled={!isValid}
                       className="w-full mt-2 cta-shimmer bg-neonCyan text-black px-6 py-4 font-mono font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-neonCyan"
                     >
@@ -228,15 +239,16 @@ export const ContactFormModal = () => {
   );
 };
 
-const Field = ({ label, value, onChange, type = 'text', placeholder, required }: {
-  label: string; value: string; onChange: (v: string) => void;
+const Field = ({ id, label, value, onChange, type = 'text', placeholder, required }: {
+  id: string; label: string; value: string; onChange: (v: string) => void;
   type?: string; placeholder?: string; required?: boolean;
 }) => (
   <div>
-    <label className="block font-mono text-[10px] text-textMuted uppercase tracking-wider mb-2">
+    <label htmlFor={id} className="block font-mono text-[10px] text-textMuted uppercase tracking-wider mb-2">
       {label} {required && <span className="text-neonCyan/60">*</span>}
     </label>
     <input
+      id={id}
       type={type} value={value} onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder} required={required}
       className="w-full bg-surface/60 border border-white/[0.08] text-white text-sm px-4 py-3 font-mono rounded-sm outline-none focus:border-neonCyan/40 transition-colors placeholder:text-white/15"

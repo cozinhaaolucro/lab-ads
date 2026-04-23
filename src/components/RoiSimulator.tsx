@@ -3,6 +3,7 @@ import { motion, animate, useMotionValue } from 'framer-motion';
 import { FadeIn } from './FadeIn';
 import { DecryptText } from './DecryptText';
 import { useEffect } from 'react';
+import { pushToDataLayer } from '../lib/gtm';
 
 // Counter component for smooth number transitions
 function AnimatedNumber({ value, prefix = '', suffix = '' }: { value: number; prefix?: string; suffix?: string }) {
@@ -73,11 +74,19 @@ export const RoiSimulator = () => {
             <div className="relative">
               <input
                 type="range"
+                id="roi-simulator-slider"
                 min="5000"
                 max="100000"
                 step="1000"
                 value={investment}
-                onChange={(e) => setInvestment(Number(e.target.value))}
+                onChange={(e) => {
+                  const val = Number(e.target.value);
+                  setInvestment(val);
+                  pushToDataLayer({
+                    event: 'simulator_change',
+                    investment_value: val
+                  });
+                }}
                 className="w-full h-1.5 bg-white/10 rounded-full appearance-none outline-none slider-thumb relative z-10"
               />
               {/* Active track bar */}
