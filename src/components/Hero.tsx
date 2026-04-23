@@ -1,9 +1,12 @@
+import { lazy, Suspense } from 'react';
 import { FadeIn } from './FadeIn';
-import { DataVisualization } from './DataVisualization';
 import { ChevronRight, CheckCircle2 } from 'lucide-react';
 import { m } from 'framer-motion';
 import { MagneticButton } from './MagneticButton';
 import { useContactForm } from './ContactFormContext';
+
+// Lazy load heavy charts to free up main thread for LCP
+const DataVisualization = lazy(() => import('./DataVisualization').then(m => ({ default: m.DataVisualization })));
 
 const bullets = [
   'Funil mapeado do clique à compra — sem ponto cego',
@@ -23,15 +26,15 @@ export const Hero = () => {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
       {/* Left Column — Copy */}
       <div className="lg:col-span-5">
-        <FadeIn delay={0.1}>
+        <div className="animate-fade-in-up" style={{ animationDelay: '100ms' }}>
           <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-display font-bold text-white leading-[1.05] tracking-tight mb-8">
             Seu Tráfego Pago <br />
             <span className="text-gradient">está Gerando</span>{' '}
             <span className="text-neonCyan">Lucro?</span>
           </h1>
-        </FadeIn>
+        </div>
 
-        <FadeIn delay={0.2}>
+        <div className="animate-fade-in-up" style={{ animationDelay: '200ms' }}>
           <p className="text-lg md:text-xl text-textMuted max-w-xl leading-relaxed mb-8 font-light">
             Se você investe em mídia todo mês e ainda não sabe{' '}
             <span className="text-white font-medium">exatamente quanto cada real retorna</span>{' '}
@@ -49,9 +52,9 @@ export const Hero = () => {
               </li>
             ))}
           </ul>
-        </FadeIn>
+        </div>
 
-        <FadeIn delay={0.3}>
+        <div className="animate-fade-in-up" style={{ animationDelay: '300ms' }}>
           <div className="flex flex-col sm:flex-row items-start gap-4">
             <MagneticButton>
               <button
@@ -81,12 +84,14 @@ export const Hero = () => {
           <p className="mt-4 font-mono text-[10px] text-textMuted/50 uppercase tracking-wider">
             Diagnóstico de 30 min · Gratuito · Sem compromisso de contratação
           </p>
-        </FadeIn>
+        </div>
       </div>
 
       {/* Right Column — Data Visualization Dashboard */}
       <div className="lg:col-span-7 w-full mt-12 lg:mt-0">
-        <DataVisualization />
+        <Suspense fallback={<div className="aspect-video bg-white/[0.02] rounded-sm animate-pulse" />}>
+          <DataVisualization />
+        </Suspense>
       </div>
     </div>
 
