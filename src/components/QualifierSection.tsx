@@ -1,6 +1,6 @@
 import { FadeIn } from './FadeIn';
 import { Target, AlertTriangle, HelpCircle, ShieldX } from 'lucide-react';
-import { motion } from 'framer-motion';
+
 const qualifiers = [
   {
     icon: Target,
@@ -44,11 +44,9 @@ export const QualifierSection = () => (
           <div className="flex flex-col justify-center h-full">
             <div className="border border-white/[0.08] bg-surface/20 p-8 md:p-10 rounded-sm relative overflow-hidden group">
             
-            {/* Animated Scanner Line */}
-            <motion.div
-              className="absolute left-0 right-0 h-[2px] bg-neonCyan/30 blur-[1px] shadow-[0_0_15px_rgba(0,240,255,0.6)] z-0 pointer-events-none"
-              animate={{ top: ['0%', '100%', '0%'] }}
-              transition={{ duration: 4, ease: 'linear', repeat: Infinity }}
+            {/* CSS-only Scanner Line — no framer-motion overhead */}
+            <div
+              className="absolute left-0 right-0 h-[2px] bg-neonCyan/30 blur-[1px] shadow-[0_0_15px_rgba(0,240,255,0.6)] z-0 pointer-events-none animate-[scanVertical_4s_linear_infinite]"
             />
 
             {/* Corner accent */}

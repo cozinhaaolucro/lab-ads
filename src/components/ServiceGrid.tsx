@@ -1,7 +1,7 @@
 import { FadeIn } from './FadeIn';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useRef, useCallback, memo } from 'react';
 
 const platforms = [
   {
@@ -27,40 +27,45 @@ const platforms = [
   },
 ];
 
-const RadarAnim = () => (
+/* RadarAnim uses CSS animation (no JS overhead) and only renders when hovered */
+const RadarAnim = memo(() => (
   <div className="absolute -bottom-16 -right-16 w-64 h-64 pointer-events-none opacity-0 group-hover:opacity-20 transition-opacity duration-700 z-0">
-    <motion.svg
+    <svg
       viewBox="0 0 100 100"
-      className="w-full h-full text-neonCyan"
-      animate={{ rotate: 360 }}
-      transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+      className="w-full h-full text-neonCyan animate-[spin_20s_linear_infinite]"
     >
       <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="0.5" fill="none" strokeDasharray="2 4" />
       <circle cx="50" cy="50" r="35" stroke="currentColor" strokeWidth="0.5" fill="none" />
       <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" strokeWidth="0.5" />
       <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" strokeWidth="0.5" />
       <path d="M50,50 L50,2 A48,48 0 0,1 84,16 Z" fill="currentColor" opacity="0.1" />
-    </motion.svg>
+    </svg>
   </div>
-);
+));
 
 const PlatformCard = ({ p, i }: { p: typeof platforms[0]; i: number }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const rafRef = useRef<number>(0);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+  // Throttled mousemove via RAF — at most 1 update per frame instead of every pixel
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (rafRef.current) return; // Skip if a frame is already queued
+    rafRef.current = requestAnimationFrame(() => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+      rafRef.current = 0;
     });
-  };
+  }, []);
 
   return (
     <motion.div
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => { setIsHovered(false); cancelAnimationFrame(rafRef.current); rafRef.current = 0; }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

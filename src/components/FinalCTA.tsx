@@ -1,6 +1,5 @@
 import { FadeIn } from './FadeIn';
 import { ChevronRight } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { MagneticButton } from './MagneticButton';
 import { SystemLogs } from './SystemLogs';
 import { useContactForm } from './ContactFormContext';
@@ -15,21 +14,13 @@ export const FinalCTA = () => {
     {/* Ambient glow */}
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neonCyan/[0.06] rounded-full blur-[150px] pointer-events-none z-0" />
 
-    {/* 3D Grid Floor */}
+    {/* 3D Grid Floor — CSS animation instead of framer-motion */}
     <div className="absolute inset-0 z-0 pointer-events-none" style={{ perspective: '1000px' }}>
-      <motion.div
-        className="absolute w-[200%] h-[200%] left-[-50%] top-[20%] bg-grid opacity-[0.15]"
+      <div
+        className="absolute w-[200%] h-[200%] left-[-50%] top-[20%] bg-grid opacity-[0.15] animate-[grid-flow_2s_linear_infinite]"
         style={{
           transformOrigin: 'top center',
           transform: 'rotateX(75deg)',
-        }}
-        animate={{
-          backgroundPosition: ['0px 0px', '0px 60px']
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: 'linear'
         }}
       />
       {/* Fade out edges to blend smoothly */}

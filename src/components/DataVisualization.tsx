@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, memo } from 'react';
 
 /* ─── Animated Counter Hook ─── */
 const useTickingNumber = (end: number, decimals = 0, duration = 2000, active = false) => {
@@ -20,10 +20,10 @@ const useTickingNumber = (end: number, decimals = 0, duration = 2000, active = f
   return val;
 };
 
-/* ─── Flowing Data Particles ─── */
-const HorizontalParticle = ({ delay = 0 }: { delay?: number }) => (
+/* ─── Flowing Data Particles (reduced from 8 to 4) ─── */
+const HorizontalParticle = memo(({ delay = 0 }: { delay?: number }) => (
   <motion.div
-    className="hidden md:block absolute w-1.5 h-1.5 rounded-full bg-neonCyan shadow-[0_0_8px_#00F0FF] transform-gpu"
+    className="hidden md:block absolute w-1.5 h-1.5 rounded-full bg-neonCyan shadow-[0_0_8px_#00F0FF] will-change-transform"
     initial={{ left: '10%', top: '45%', opacity: 0, scale: 0.5 }}
     animate={{ 
       left: ['10%', '50%', '90%'], 
@@ -32,11 +32,11 @@ const HorizontalParticle = ({ delay = 0 }: { delay?: number }) => (
     }}
     transition={{ duration: 3.5, delay, repeat: Infinity, ease: 'easeInOut' }}
   />
-);
+));
 
-const VerticalParticle = ({ delay = 0 }: { delay?: number }) => (
+const VerticalParticle = memo(({ delay = 0 }: { delay?: number }) => (
   <motion.div
-    className="md:hidden absolute w-1.5 h-1.5 rounded-full bg-neonCyan shadow-[0_0_8px_#00F0FF] transform-gpu"
+    className="md:hidden absolute w-1.5 h-1.5 rounded-full bg-neonCyan shadow-[0_0_8px_#00F0FF] will-change-transform"
     initial={{ top: '10%', left: '50%', opacity: 0, x: '-50%', scale: 0.5 }}
     animate={{ 
       top: ['10%', '50%', '90%'], 
@@ -45,10 +45,10 @@ const VerticalParticle = ({ delay = 0 }: { delay?: number }) => (
     }}
     transition={{ duration: 3.5, delay, repeat: Infinity, ease: 'easeInOut' }}
   />
-);
+));
 
 /* ─── Chaotic Line (Filled Area) ─── */
-const ChaoticGraph = ({ active }: { active: boolean }) => {
+const ChaoticGraph = memo(({ active }: { active: boolean }) => {
   const redPaths = [
     'M0,55 L15,20 L30,65 L45,35 L60,58 L75,15 L90,50 L105,25 L120,60 L135,40 L150,10 L165,55 L180,30 L200,45',
     'M0,30 L15,60 L30,15 L45,50 L60,25 L75,65 L90,35 L105,55 L120,10 L135,50 L150,40 L165,20 L180,60 L200,35',
@@ -114,10 +114,10 @@ const ChaoticGraph = ({ active }: { active: boolean }) => {
       />
     </svg>
   );
-};
+});
 
 /* ─── Stable Growth Line (Filled Area) ─── */
-const GrowthGraph = ({ active }: { active: boolean }) => (
+const GrowthGraph = memo(({ active }: { active: boolean }) => (
   <svg viewBox="0 0 200 70" className="w-full h-full overflow-visible" preserveAspectRatio="none">
     <defs>
       <linearGradient id="growthFill" x1="0" y1="0" x2="0" y2="1">
@@ -161,10 +161,10 @@ const GrowthGraph = ({ active }: { active: boolean }) => (
       style={{ filter: 'drop-shadow(0 0 10px #00F0FF)' }}
     />
   </svg>
-);
+));
 
 /* ─── Processing Node ─── */
-const ProcessingNode = ({ label, delay }: { label: string; delay: number }) => (
+const ProcessingNode = memo(({ label, delay }: { label: string; delay: number }) => (
   <motion.div
     className="flex items-center gap-2.5 px-3 py-1.5 rounded-sm bg-neonCyan/[0.03] border border-neonCyan/10 backdrop-blur-sm"
     initial={{ opacity: 0, x: -5 }}
@@ -176,7 +176,7 @@ const ProcessingNode = ({ label, delay }: { label: string; delay: number }) => (
       {label}
     </span>
   </motion.div>
-);
+));
 
 export const DataVisualization = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -209,12 +209,12 @@ export const DataVisualization = () => {
         {/* Connection Track (Background) */}
         <div className="hidden md:block absolute top-[45%] left-4 right-4 h-[2px] bg-gradient-to-r from-red-500/20 via-neonCyan/20 to-neonCyan/40 pointer-events-none" />
         
-        {/* Flow Particles */}
+        {/* Flow Particles — reduced from 8 to 4 for performance */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden rounded-2xl">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(4)].map((_, i) => (
             <div key={i}>
-              <HorizontalParticle delay={i * 0.3} />
-              <VerticalParticle delay={i * 0.3} />
+              <HorizontalParticle delay={i * 0.6} />
+              <VerticalParticle delay={i * 0.6} />
             </div>
           ))}
         </div>

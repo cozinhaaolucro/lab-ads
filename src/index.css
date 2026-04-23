@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* Fonts loaded non-blocking from index.html via media="print" trick */
 
 @tailwind base;
 @tailwind components;
@@ -27,6 +27,12 @@
 
   html.cursor-none, html.cursor-none * {
     cursor: none !important;
+  }
+
+  /* Below-fold sections: skip rendering until near viewport */
+  section:not(:first-of-type) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
   }
 }
 
@@ -115,6 +121,19 @@
 @keyframes scanline {
   0% { transform: translateY(-100%); }
   100% { transform: translateY(100vh); }
+}
+
+/* Scanner line for QualifierSection — replaces framer-motion infinite */
+@keyframes scanVertical {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+/* 3D grid floor flow for FinalCTA — replaces framer-motion infinite */
+@keyframes grid-flow {
+  0% { background-position: 0px 0px; }
+  100% { background-position: 0px 60px; }
 }
 
 @keyframes blink {

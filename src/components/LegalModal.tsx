@@ -66,7 +66,7 @@ Conforme a Lei Geral de Proteção de Dados (LGPD — Lei 13.709/2018), você te
 - Solicitar a eliminação dos dados
 - Revogar seu consentimento
 
-Para exercer esses direitos, entre em contato pelo e-mail: **lab@labads.com.br**
+Para exercer esses direitos, entre em contato pelo e-mail: **labads.br@gmail.com**
 
 ## 7. Cookies
 Este site pode utilizar cookies de análise (ex: Google Analytics) para entender o comportamento dos visitantes. Você pode desabilitá-los nas configurações do seu navegador.
@@ -75,7 +75,7 @@ Este site pode utilizar cookies de análise (ex: Google Analytics) para entender
 Esta Política de Privacidade pode ser atualizada periodicamente. A versão vigente será sempre a publicada nesta página.
 
 ## 9. Contato do Encarregado (DPO)
-Para questões relacionadas à proteção de dados, entre em contato: **lab@labads.com.br**
+Para questões relacionadas à proteção de dados, entre em contato: **labads.br@gmail.com**
 
 *Última atualização: Abril de 2026*
 `;

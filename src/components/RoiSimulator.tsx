@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, animate, useMotionValue } from 'framer-motion';
 import { FadeIn } from './FadeIn';
 import { DecryptText } from './DecryptText';
-import { useEffect } from 'react';
 import { pushToDataLayer } from '../lib/gtm';
 
 // Counter component for smooth number transitions
@@ -23,13 +22,25 @@ function AnimatedNumber({ value, prefix = '', suffix = '' }: { value: number; pr
       }
     });
     return controls.stop;
-  }, [value]);
+  }, [motionValue, value]);
 
   return <span>{prefix}{display}{suffix}</span>;
 }
 
 export const RoiSimulator = () => {
   const [investment, setInvestment] = useState(15000);
+  const gtmTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Debounced GTM push — fires once after 500ms of inactivity
+  const debouncedGTMPush = useCallback((val: number) => {
+    if (gtmTimeoutRef.current) clearTimeout(gtmTimeoutRef.current);
+    gtmTimeoutRef.current = setTimeout(() => {
+      pushToDataLayer({
+        event: 'simulator_change',
+        investment_value: val
+      });
+    }, 500);
+  }, []);
 
   // Mathematical projections based on a logarithmic curve for realistic scaling
   const roasMultiplier = 3.8 - (investment / 100000) * 0.8; // ROAS slightly decreases as spend scales
@@ -82,10 +93,7 @@ export const RoiSimulator = () => {
                 onChange={(e) => {
                   const val = Number(e.target.value);
                   setInvestment(val);
-                  pushToDataLayer({
-                    event: 'simulator_change',
-                    investment_value: val
-                  });
+                  debouncedGTMPush(val);
                 }}
                 className="w-full h-1.5 bg-white/10 rounded-full appearance-none outline-none slider-thumb relative z-10"
               />

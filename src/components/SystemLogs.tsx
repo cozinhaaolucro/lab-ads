@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, memo } from 'react';
 
 const LOG_LINES = [
   '[SYS] Model converged. CAC optimization deployed.',
@@ -16,29 +16,54 @@ const LOG_LINES = [
   '[DATA] Parsing Google Analytics 4 stream.',
 ];
 
-export const SystemLogs = () => {
+export const SystemLogs = memo(() => {
   const [logs, setLogs] = useState<string[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
+    // Generate initial logs
     const initialLogs = Array.from({ length: 50 }, () => {
       const time = new Date(Date.now() - Math.random() * 100000).toISOString().split('T')[1].slice(0, 12);
       return `${time} ${LOG_LINES[Math.floor(Math.random() * LOG_LINES.length)]}`;
     });
     setLogs(initialLogs);
 
-    const interval = setInterval(() => {
-      setLogs((prev) => {
-        const time = new Date().toISOString().split('T')[1].slice(0, 12);
-        const newLog = `${time} ${LOG_LINES[Math.floor(Math.random() * LOG_LINES.length)]}`;
-        return [...prev.slice(1), newLog];
-      });
-    }, 800);
+    // IntersectionObserver: only tick when visible in viewport
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!intervalRef.current) {
+            intervalRef.current = setInterval(() => {
+              setLogs((prev) => {
+                const time = new Date().toISOString().split('T')[1].slice(0, 12);
+                const newLog = `${time} ${LOG_LINES[Math.floor(Math.random() * LOG_LINES.length)]}`;
+                return [...prev.slice(1), newLog];
+              });
+            }, 2500); // Slowed from 800ms — component is 3% opacity, no one notices
+          }
+        } else {
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+          }
+        }
+      },
+      { threshold: 0 }
+    );
 
-    return () => clearInterval(interval);
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-[0.03] flex flex-col justify-end p-8 [mask-image:linear-gradient(to_top,black,transparent)]">
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-[0.03] flex flex-col justify-end p-8 [mask-image:linear-gradient(to_top,black,transparent)]">
       <div className="flex flex-col items-start gap-1">
         {logs.map((log, i) => (
           <div key={i} className="font-mono text-[10px] text-neonCyan whitespace-nowrap">
@@ -48,4 +73,4 @@ export const SystemLogs = () => {
       </div>
     </div>
   );
-};
+});
