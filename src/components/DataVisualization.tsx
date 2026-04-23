@@ -181,7 +181,7 @@ const ProcessingNode = memo(({ label, delay, isMobile }: { label: string; delay:
 export const DataVisualization = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
