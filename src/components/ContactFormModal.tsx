@@ -79,19 +79,21 @@ export const ContactFormModal = () => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const investmentLabel =
       investmentOptions.find((o) => o.value === form.investment)?.label || 'Não informado';
-    const message = encodeURIComponent(
-      `*Novo Lead — LabAds*\n\n` +
-        `👤 *Nome:* ${form.name}\n` +
-        `📧 *E-mail:* ${form.email}\n` +
-        `📱 *WhatsApp:* ${form.phone}\n` +
-        `🏢 *Empresa:* ${form.company}\n` +
-        `💰 *Investimento Mensal:* ${investmentLabel}\n\n` +
-        `Solicito um diagnóstico estratégico gratuito.`
-    );
+    
+    const messageBody = `Novo Lead — LabAds\n\n` +
+        `Nome: ${form.name}\n` +
+        `E-mail: ${form.email}\n` +
+        `WhatsApp: ${form.phone}\n` +
+        `Empresa: ${form.company}\n` +
+        `Investimento Mensal: ${investmentLabel}\n\n` +
+        `Solicito um diagnóstico estratégico gratuito.`;
+
+    const whatsappMessage = encodeURIComponent(messageBody);
+
     setSubmitted(true);
     
     // GTM Event
@@ -101,14 +103,35 @@ export const ContactFormModal = () => {
       investment_range: investmentLabel
     });
 
+    // Send to Email via FormSubmit (AJAX)
+    try {
+      await fetch('https://formsubmit.co/ajax/labads.br@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Novo Lead LabAds: ${form.name}`,
+          Nome: form.name,
+          Email: form.email,
+          WhatsApp: form.phone,
+          Empresa: form.company || 'Não informada',
+          Investimento: investmentLabel,
+          Mensagem: 'Solicitação de diagnóstico estratégico pela Landing Page.',
+          _template: 'box'
+        })
+      });
+    } catch (err) {
+      console.error('FormSubmit Error:', err);
+      // Fails silently for user, still proceeds to WhatsApp
+    }
+
     setTimeout(() => {
-      window.open(`https://wa.me/${WPP_NUMBER}?text=${message}`, '_blank');
-      setTimeout(() => {
-        setSubmitted(false);
-        setForm({ name: '', email: '', phone: '', company: '', investment: '' });
-        close();
-      }, 600);
-    }, 1200);
+      setSubmitted(false);
+      setForm({ name: '', email: '', phone: '', company: '', investment: '' });
+      close();
+    }, 3000);
   };
 
   const isValid = form.name && form.email && form.phone;
@@ -158,10 +181,10 @@ export const ContactFormModal = () => {
               {!submitted ? (
                 <>
                   <h3 className="font-display font-bold text-xl text-white mb-1">
-                    Diagnóstico Estratégico
+                    Seu Diagnóstico Gratuito
                   </h3>
                   <p className="text-textMuted text-sm mb-8 leading-relaxed">
-                    Preencha os campos e receba uma análise completa do seu funil em até 30 minutos.
+                    Em até 30 minutos, você recebe uma análise do seu funil atual, identificação dos maiores gargalos e um plano de prioridades. Tudo ao vivo, via WhatsApp.
                   </p>
 
                   <form onSubmit={handleSubmit} id="contact-form-main" className="space-y-5">
@@ -172,7 +195,7 @@ export const ContactFormModal = () => {
 
                     <div>
                       <label className="block font-mono text-[10px] text-textMuted uppercase tracking-wider mb-2">
-                        Investimento Mensal em Mídia
+                        Quanto você investe em mídia por mês?
                       </label>
                       <select
                         id="field-investment"
@@ -195,12 +218,12 @@ export const ContactFormModal = () => {
                       disabled={!isValid}
                       className="w-full mt-2 cta-shimmer bg-neonCyan text-black px-6 py-4 font-mono font-bold uppercase tracking-wider flex items-center justify-center gap-3 hover:bg-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-neonCyan"
                     >
-                      <span>Iniciar Diagnóstico</span>
+                      <span>Quero meu diagnóstico →</span>
                     </button>
                   </form>
 
                   <p className="mt-5 text-center font-mono text-[9px] text-textMuted/40 uppercase tracking-wider">
-                    Dados enviados via WhatsApp · Sem spam
+                    Seus dados estão seguros conosco · Sem spam, jamais
                   </p>
                 </>
               ) : (
@@ -218,15 +241,15 @@ export const ContactFormModal = () => {
                     <div className="w-6 h-6 rounded-full bg-neonCyan pulse-dot" />
                   </motion.div>
                   <h3 className="font-display font-bold text-xl text-white mb-2">
-                    Protocolo Iniciado
+                    Solicitação Recebida!
                   </h3>
-                  <p className="text-textMuted text-sm">Redirecionando para o WhatsApp...</p>
+                  <p className="text-textMuted text-sm">Nossa equipe analisará seus dados e entrará em contato em breve.</p>
                   <motion.div className="mt-6 h-1 bg-neonCyan/20 rounded-full overflow-hidden max-w-[200px] mx-auto">
                     <motion.div
                       className="h-full bg-neonCyan"
                       initial={{ width: '0%' }}
                       animate={{ width: '100%' }}
-                      transition={{ duration: 1.2, ease: 'easeInOut' }}
+                      transition={{ duration: 3, ease: 'linear' }}
                     />
                   </motion.div>
                 </motion.div>

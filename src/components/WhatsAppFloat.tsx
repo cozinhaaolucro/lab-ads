@@ -30,14 +30,19 @@ export const WhatsAppFloat = () => {
 
   const isValid = name.trim() && phone.trim() && email.trim();
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isValid) return;
 
+    const messageBody = `Novo Lead Rápido (WhatsApp Float)\n\n` +
+      `Nome: ${name}\n` +
+      `E-mail: ${email}\n` +
+      `WhatsApp: ${phone}\n\n` +
+      `Gostaria de saber mais sobre os serviços da LabAds.`;
+
     const text = encodeURIComponent(
-      `Olá! Meu nome é ${name}.\n📧 ${email}\n📱 ${phone}\n\nGostaria de saber mais sobre os serviços da LabAds.`
+      `Olá! Meu nome é ${name} e acabei de preencher o formulário no site. Gostaria de falar com a equipe da LabAds.`
     );
-    window.open(`https://wa.me/${WPP}?text=${text}`, '_blank');
     
     // GTM Event
     pushToDataLayer({
@@ -45,6 +50,29 @@ export const WhatsAppFloat = () => {
       form_id: 'whatsapp_float'
     });
 
+    // Send to Email via FormSubmit (AJAX)
+    try {
+      await fetch('https://formsubmit.co/ajax/labads.br@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Novo Lead Rápido LabAds: ${name}`,
+          Nome: name,
+          Email: email,
+          WhatsApp: phone,
+          Mensagem: 'Lead originado pelo botão flutuante de WhatsApp.',
+          _template: 'box'
+        })
+      });
+    } catch (err) {
+      console.error('FormSubmit Error:', err);
+    }
+
+    window.open(`https://wa.me/${WPP}?text=${text}`, '_blank');
+    
     setName(''); setPhone(''); setEmail(''); setIsOpen(false);
   };
 
@@ -78,9 +106,9 @@ export const WhatsAppFloat = () => {
 
             {/* Form */}
             <form onSubmit={submit} id="wpp-float-form" className="p-4 space-y-3">
-              <p className="text-white text-sm font-display font-semibold">Fale conosco agora</p>
+              <p className="text-white text-sm font-display font-semibold">Fale com um especialista agora</p>
               <p className="text-textMuted text-[11px] leading-relaxed">
-                Preencha seus dados para iniciar conversa.
+                Resposta em minutos — sem robô, sem enrolação.
               </p>
 
               <div>
@@ -123,7 +151,7 @@ export const WhatsAppFloat = () => {
                 className="w-full bg-neonGreen text-black py-2.5 font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 rounded-sm transition-all disabled:opacity-20 disabled:cursor-not-allowed hover:bg-white disabled:hover:bg-neonGreen"
               >
                 <WppIcon c="w-4 h-4" />
-                Iniciar Conversa
+                Falar agora no WhatsApp
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
             </form>

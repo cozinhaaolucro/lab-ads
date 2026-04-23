@@ -7,22 +7,22 @@ const platforms = [
   {
     name: 'Google Ads',
     tag: 'SEARCH + PMAX',
-    role: 'Captura de demanda ativa (fundo de funil)',
-    desc: 'Capturamos quem já está buscando pela sua solução. Scripts proprietários de automação e modelos preditivos de lance para maximizar cada clique.',
+    role: 'Para quem já está pronto para comprar',
+    desc: 'Capturamos quem já busca o que você vende. Scripts próprios de automação e otimização de lances reduzem seu CPA enquanto mantêm volume — sem desperdiçar verba em cliques que não convertem.',
     metrics: ['CPA Alvo Otimizado', 'ROAS Preditivo', 'Scripts de Automação', 'Quality Score Engineering'],
   },
   {
     name: 'Meta Ads',
     tag: 'FEED + REELS',
-    role: 'Geração e nutrição de demanda (topo e meio)',
-    desc: 'Geramos demanda com criativos data-driven e nutrimos audiências com sequências de testes multivariados e significância estatística real.',
+    role: 'Para quem ainda não te conhece — mas deveria',
+    desc: 'Criamos e testamos criativos com base em dados, não em opinião. Sabemos qual ângulo de mensagem converte mais para cada segmento — e dobramos a aposta só no que funciona.',
     metrics: ['Teste A/B Multivariado', 'CAPI Server-Side', 'Lookalike Preditivo', 'Creative Analytics'],
   },
   {
     name: 'LinkedIn Ads',
     tag: 'B2B + ABM',
-    role: 'Aquisição B2B qualificada',
-    desc: 'Segmentação firmográfica cirúrgica para ciclos de venda complexos. Pipeline previsível para empresas B2B com ticket médio alto.',
+    role: 'Para vender para empresas com decisores reais',
+    desc: 'Segmentamos por cargo, setor e tamanho de empresa com precisão cirúrgica. Ideal para B2B com ticket alto e ciclo de venda longo — onde cada lead qualificado vale muito.',
     metrics: ['Filtros Firmográficos', 'Lead Gen Avançado', 'InMail Sequencial', 'ABM Targeting'],
   },
 ];
@@ -136,11 +136,11 @@ export const ServiceGrid = () => {
         <div className="text-center mb-14 md:mb-16">
           <FadeIn>
             <p className="text-neonCyan font-mono text-[10px] uppercase tracking-[0.4em] mb-4">
-              // stack de canais estratégica
+              // cada plataforma com uma função
             </p>
             <h2 className="text-4xl md:text-6xl font-display font-bold text-white leading-tight">
-              Plataformas com<br />
-              <span className="text-gradient">Função Definida.</span>
+              Cada Canal faz uma Coisa<br />
+              <span className="text-gradient">— e faz Bem.</span>
             </h2>
           </FadeIn>
         </div>

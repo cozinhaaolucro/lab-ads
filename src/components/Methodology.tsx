@@ -4,30 +4,30 @@ import { Database, Activity, Network, Zap, ArrowRight } from 'lucide-react';
 const steps = [
   {
     step: '01',
-    title: 'Coleta de Dados',
-    desc: 'Integração com plataformas + leitura completa do funil atual. Mapeamos cada ponto de contato e métrica relevante.',
-    deliverable: 'Relatório de diagnóstico inicial',
+    title: 'Raio-X do Seu Funil',
+    desc: 'Conectamos todas as plataformas e lemos seu funil do topo ao fundo. Em 48h você tem um mapa completo de onde o dinheiro entra, onde converte e onde vaza.',
+    deliverable: 'Diagnóstico completo do funil em 48h',
     icon: Database,
   },
   {
     step: '02',
-    title: 'Modelagem Estatística',
-    desc: 'Identificação de padrões de conversão e desperdício. Análise de regressão e anomalias no custo de aquisição.',
-    deliverable: 'Mapa de oportunidades com priorização',
+    title: 'Onde Está o Desperdício',
+    desc: 'Identificamos onde você está pagando caro por resultados ruins — seja no criativo, na segmentação, no lance ou na landing. Priorizamos o que tem maior impacto financeiro imediato.',
+    deliverable: 'Lista priorizada das maiores perdas financeiras',
     icon: Activity,
   },
   {
     step: '03',
-    title: 'Execução de Tráfego',
-    desc: 'Testes controlados com hipóteses claras. Cada campanha é um experimento com variáveis isoladas.',
-    deliverable: 'Plano de testes com metas definidas',
+    title: 'Campanhas com Hipótese Real',
+    desc: 'Cada campanha tem uma hipótese clara e uma única variável isolada. Assim sabemos o que causou o resultado — não apenas que o resultado aconteceu.',
+    deliverable: 'Plano de experimentos com meta de resultado',
     icon: Network,
   },
   {
     step: '04',
-    title: 'Otimização Preditiva',
-    desc: 'Escala baseada em dados, não em tentativa e erro. Ajustes algorítmicos contínuos via modelos preditivos.',
-    deliverable: 'Dashboard com métricas em tempo real',
+    title: 'Escala Sem Surpresas',
+    desc: 'Com dados suficientes, escalamos o que funciona com previsibilidade. ROAS estável, CAC controlado, sem sustos no final do mês.',
+    deliverable: 'Dashboard ao vivo com ROAS, CAC e projeção',
     icon: Zap,
   },
 ];
@@ -43,15 +43,15 @@ export const Methodology = () => {
         <div className="lg:w-1/3 lg:sticky lg:top-40 self-start">
           <FadeIn>
             <p className="text-neonCyan font-mono text-xs uppercase tracking-[0.25em] mb-4">
-              // pipeline de processamento
+              // como funciona na prática
             </p>
             <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 leading-tight">
-              A Metodologia de<br />
-              <span className="text-gradient">Cientifização.</span>
+              Como Transformamos<br />
+              <span className="text-gradient">Verba em Sistema.</span>
             </h2>
             <p className="text-textMuted leading-relaxed">
-              Cada campanha é tratada como um experimento científico com hipótese, grupo
-              de controle, variáveis isoladas e conclusão baseada em significância estatística.
+              Não otimizamos por instinto. Cada mudança tem hipótese, grupo
+              de controle e resultado mensurável. Assim você sabe o que funcionou — e por quê.
             </p>
           </FadeIn>
         </div>

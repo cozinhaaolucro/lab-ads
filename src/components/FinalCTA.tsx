@@ -31,15 +31,15 @@ export const FinalCTA = () => {
     <div className="max-w-3xl mx-auto text-center relative z-10">
       <FadeIn delay={0.1}>
         <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-8 leading-tight drop-shadow-xl">
-          Pronto para transformar<br />
-          tráfego em um <span className="text-neonCyan drop-shadow-[0_0_10px_rgba(0,240,255,0.4)]"><DecryptText text="sistema previsível" /></span>?
+          Em 30 Minutos Você Sabe<br />
+          <span className="text-neonCyan drop-shadow-[0_0_10px_rgba(0,240,255,0.4)]"><DecryptText text="Onde Está Perdendo Dinheiro" /></span>.
         </h2>
       </FadeIn>
 
       <FadeIn delay={0.2}>
         <p className="text-textMuted text-lg leading-relaxed mb-12 max-w-xl mx-auto drop-shadow-md">
-          Receba um diagnóstico completo do seu cenário atual e um plano claro
-          de otimização baseado em dados. Sem achismo, sem promessa vazia.
+          Fazemos uma análise ao vivo do seu funil: CAC, ROAS, estrutura de campanha e criativos.
+          Você sai com um mapa claro do problema — e do que fazer primeiro.
         </p>
       </FadeIn>
 
@@ -51,7 +51,7 @@ export const FinalCTA = () => {
               className="group cta-shimmer inline-flex items-center gap-3 bg-neonCyan text-black px-10 py-5 font-mono font-bold uppercase tracking-wider text-lg hover:bg-white transition-colors glow-cyan relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-[shimmer_0.6s_ease-out_forwards]" />
-              <span className="relative z-10">Solicitar Diagnóstico Gratuito</span>
+              <span className="relative z-10">Quero meu diagnóstico gratuito</span>
               <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform relative z-10" />
             </button>
           </MagneticButton>
@@ -60,7 +60,7 @@ export const FinalCTA = () => {
 
       <FadeIn delay={0.4}>
         <p className="text-textMuted/50 font-mono text-xs mt-8 uppercase tracking-wider">
-          Sem compromisso · Sem achismo · 100% baseado em dados
+          Gratuito · 30 minutos · Sem compromisso de contratação
         </p>
       </FadeIn>
     </div>

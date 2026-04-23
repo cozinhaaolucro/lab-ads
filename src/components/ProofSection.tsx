@@ -1,9 +1,9 @@
 import { FadeIn } from './FadeIn';
 import { AnimatedCounter } from './AnimatedCounter';
 const kpis = [
-  { value: '-42%', label: 'Redução progressiva de CAC', detail: 'em funis otimizados' },
-  { value: '3.8x', label: 'Aumento de taxa de conversão', detail: 'com otimização contínua' },
-  { value: '90+', label: 'Dias de estabilização', detail: 'de aquisição previsível' },
+  { value: '-42%', label: 'Redução média de CAC', detail: 'nos primeiros 90 dias de otimização' },
+  { value: '3.8x', label: 'Crescimento de ROAS médio', detail: 'em contas com gestão ativa por 6+ meses' },
+  { value: '90+', label: 'Dias para aquisição previsível', detail: 'da aplicação do modelo ao resultado estável' },
 ];
 
 export const ProofSection = () => (
@@ -12,11 +12,11 @@ export const ProofSection = () => (
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-20 gap-6">
         <div>
           <p className="text-neonCyan font-mono text-xs uppercase tracking-[0.25em] mb-4">
-            // projeções de performance
+            // resultados observados em funis otimizados
           </p>
           <h2 className="text-4xl md:text-5xl font-display font-bold text-white leading-tight">
-            O que você pode esperar<br />
-            <span className="text-gradient">de um sistema bem otimizado.</span>
+            O que muda quando<br />
+            <span className="text-gradient">tráfego vira sistema.</span>
           </h2>
         </div>
       </div>
@@ -33,16 +33,16 @@ export const ProofSection = () => (
       <div className="mt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         {/* Disclaimer */}
         <p className="font-mono text-[10px] text-textMuted/40 uppercase tracking-wider max-w-md leading-relaxed">
-          Resultados dependem de produto, oferta e maturidade do funil.
-          Projeções baseadas em padrões de otimização observados no mercado.
+          Resultados variam conforme produto, oferta e maturidade do funil.
+          Números baseados em padrões observados em contas geridas ativamente por 90+ dias.
         </p>
 
         {/* Extra context row */}
         <div className="flex flex-wrap gap-px">
           {[
-            { num: '4', label: 'Plataformas integradas' },
-            { num: '24/7', label: 'Monitoramento ativo' },
-            { num: '100%', label: 'Rastreabilidade' },
+            { num: '4', label: 'Plataformas monitoradas simultaneamente' },
+            { num: '24/7', label: 'Alertas automáticos de anomalia' },
+            { num: '100%', label: 'Decisões com dado, nenhuma por intuição' },
           ].map((item, i) => (
             <div key={i} className="bg-surface/50 border border-white/[0.04] px-5 py-4 text-center">
               <span className="text-white font-display font-bold text-lg block mb-0.5">{item.num}</span>

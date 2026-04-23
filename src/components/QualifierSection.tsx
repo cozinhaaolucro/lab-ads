@@ -4,15 +4,15 @@ import { Target, AlertTriangle, HelpCircle, ShieldX } from 'lucide-react';
 const qualifiers = [
   {
     icon: Target,
-    text: 'Já investe em tráfego pago e não tem previsibilidade de resultado',
+    text: 'Você investe em mídia todo mês e no final não consegue explicar com clareza o que voltou',
   },
   {
     icon: AlertTriangle,
-    text: 'Depende de tentativa e erro para otimizar campanhas',
+    text: 'Sua agência (ou você mesmo) "testa" — mas sem hipótese, sem grupo de controle, sem significância',
   },
   {
     icon: HelpCircle,
-    text: 'Não sabe exatamente onde está perdendo dinheiro no funil',
+    text: 'Você sabe que tem desperdício, mas não sabe em qual etapa do funil ele mora',
   },
 ];
 
@@ -22,7 +22,7 @@ export const QualifierSection = () => (
       {/* Left — "Isso é pra você se:" */}
       <FadeIn>
         <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-10 leading-tight">
-          Isso é para você <span className="text-neonCyan">se:</span>
+          Isso resolve o seu problema <span className="text-neonCyan">se:</span>
         </h2>
 
         <div className="space-y-5">
@@ -62,12 +62,13 @@ export const QualifierSection = () => (
               </div>
 
               <p className="text-white font-display font-semibold text-xl md:text-2xl leading-snug mb-4 flex items-center gap-2">
-                Não trabalhamos com todos.
-                <span className="animate-blink text-neonCyan/80 font-mono">▌</span>
+                Trabalhamos com quem está pronto para decisões baseadas em dados.
+                <span className="animate-blink text-neonCyan/80 font-mono">◌</span>
               </p>
               <p className="text-textMuted text-sm leading-relaxed mb-6">
-                Nosso modelo exige dados para funcionar. Por isso, não atendemos operações
-                sem validação de produto ou que buscam resultados sem investimento mínimo em mídia.
+                Nosso modelo exige histórico de dados e investimento mínimo em mídia para funcionar.
+                Se você ainda está validando produto ou quer começar com R$ 500/mês, ainda não
+                é o momento certo — e seremos honestos sobre isso no diagnóstico.
               </p>
 
               <div className="border-t border-white/[0.06] pt-5 flex items-center gap-2">

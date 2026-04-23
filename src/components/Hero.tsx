@@ -6,9 +6,9 @@ import { MagneticButton } from './MagneticButton';
 import { useContactForm } from './ContactFormContext';
 
 const bullets = [
-  'Modelagem de funil baseada em dados reais',
-  'Otimização contínua orientada por estatística',
-  'Decisões sem achismo, apenas evidência',
+  'Funil mapeado do clique à compra — sem ponto cego',
+  'Campanhas ajustadas toda semana com base em dados, não intuição',
+  'Você sabe exatamente onde está perdendo dinheiro — e como parar',
 ];
 
 export const Hero = () => {
@@ -25,18 +25,19 @@ export const Hero = () => {
       <div className="lg:col-span-5">
         <FadeIn delay={0.1}>
           <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-display font-bold text-white leading-[1.05] tracking-tight mb-8">
-            A Matemática<br />
-            <span className="text-gradient">do Lucro</span>{' '}
-            <span className="text-neonCyan">Previsível.</span>
+            Seu Tráfego Pago<br />
+            <span className="text-gradient">está Gerando</span>{' '}
+            <span className="text-neonCyan">Lucro?</span>
           </h1>
         </FadeIn>
 
         <FadeIn delay={0.2}>
           <p className="text-lg md:text-xl text-textMuted max-w-xl leading-relaxed mb-8 font-light">
-            Para <span className="text-white font-medium">e-commerces, SaaS e negócios de serviço</span>{' '}
-            que já investem em tráfego pago e precisam transformar isso em um{' '}
-            <span className="text-white font-medium">sistema previsível de aquisição</span>{' '}
-            com controle real de CAC e ROI.
+            Se você investe em mídia todo mês e ainda não sabe{' '}
+            <span className="text-white font-medium">exatamente quanto cada real retorna</span>{' '}
+            — você não tem uma estratégia. Tem uma aposta.{' '}
+            A LabAds transforma isso em sistema:{' '}
+            <span className="text-white font-medium">CAC controlado, ROAS previsível, escala sem surpresas.</span>
           </p>
 
           {/* Reinforcement Bullets */}
@@ -58,7 +59,7 @@ export const Hero = () => {
                 id="hero-cta-button"
                 className="group cta-shimmer inline-flex items-center gap-3 bg-neonCyan text-black px-8 py-4 font-mono font-bold uppercase tracking-wider hover:bg-white transition-colors glow-cyan"
               >
-                <span>Diagnóstico Estratégico</span>
+                <span>Ver onde estou perdendo dinheiro</span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </MagneticButton>
@@ -78,7 +79,7 @@ export const Hero = () => {
           </div>
           {/* Microcopy */}
           <p className="mt-4 font-mono text-[10px] text-textMuted/50 uppercase tracking-wider">
-            Análise completa do seu funil + plano de otimização em até 30 minutos
+            Diagnóstico de 30 min · Gratuito · Sem compromisso de contratação
           </p>
         </FadeIn>
       </div>

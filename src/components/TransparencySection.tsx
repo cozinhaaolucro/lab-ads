@@ -4,15 +4,15 @@ import { ShieldCheck, Eye, GitBranch } from 'lucide-react';
 const points = [
   {
     icon: Eye,
-    text: 'Não usamos métricas de vaidade',
+    text: 'Só reportamos métricas que impactam o seu caixa',
   },
   {
     icon: ShieldCheck,
-    text: 'Não mascaramos dados',
+    text: 'Você tem acesso a tudo — inclusive ao que não funcionou',
   },
   {
     icon: GitBranch,
-    text: 'Cada decisão é rastreável e validada',
+    text: 'Cada ajuste tem uma razão documentada e um resultado esperado',
   },
 ];
 
@@ -26,22 +26,22 @@ export const TransparencySection = () => (
       <div className="lg:w-1/2 lg:sticky lg:top-40 self-start">
         <FadeIn>
           <p className="text-neonCyan font-mono text-xs uppercase tracking-[0.25em] mb-4">
-            // transparência radical
+            // nossa postura é diferente
           </p>
           <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-8 leading-tight">
-            Sem Cases.<br />
-            <span className="text-gradient">Com Método.</span>
+            Somos Honestos Sobre<br />
+            <span className="text-gradient">o Que Entregamos.</span>
           </h2>
           <p className="text-textMuted text-lg leading-relaxed mb-10 max-w-lg">
-            Estamos estruturando um modelo baseado em ciência e previsibilidade,
-            não em promessas infladas ou números fora de contexto.
+            A maioria das agências te vende cases isolados. Nós preferimos explicar o processo.
+            Porque resultado repetível depende de método — não de sorte.
           </p>
 
           {/* Closing Statement */}
           <div className="border-l-2 border-neonCyan/40 pl-6">
             <p className="text-white font-display font-semibold text-lg leading-snug">
-              Você não está comprando histórico.<br />
-              <span className="text-neonCyan">Está comprando método.</span>
+              Você não está pagando por resultados passados de outras contas.<br />
+              <span className="text-neonCyan">Está construindo um sistema que gera os seus.</span>
             </p>
           </div>
         </FadeIn>

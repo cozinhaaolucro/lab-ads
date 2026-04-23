@@ -56,7 +56,7 @@ export const Navbar = () => {
             id="nav-cta-button"
             className="cta-shimmer text-sm font-mono text-black bg-neonCyan px-5 py-2.5 uppercase tracking-wider font-semibold hover:bg-white transition-colors flex items-center gap-2"
           >
-            Iniciar Protocolo
+            Diagnóstico Gratuito
             <ArrowUpRight className="w-4 h-4" />
           </button>
         </div>
@@ -97,7 +97,7 @@ export const Navbar = () => {
                 onClick={() => { setMobileOpen(false); open(); }}
                 className="text-sm font-mono text-black bg-neonCyan px-5 py-3 uppercase tracking-wider font-semibold text-center mt-2"
               >
-                Iniciar Protocolo
+                Diagnóstico Gratuito
               </button>
             </div>
           </motion.div>
