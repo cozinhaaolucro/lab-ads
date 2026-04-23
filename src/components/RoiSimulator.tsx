@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, animate, useMotionValue } from 'framer-motion';
+import { m, animate, useMotionValue } from 'framer-motion';
 import { FadeIn } from './FadeIn';
 import { DecryptText } from './DecryptText';
 import { pushToDataLayer } from '../lib/gtm';
@@ -144,7 +144,7 @@ export const RoiSimulator = () => {
                   <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
                 </linearGradient>
               </defs>
-              <motion.path
+              <m.path
                 animate={{ d: `M0,100 Q40,${curveHeight} 100,${curveHeight - 10}` }}
                 fill="none"
                 stroke="currentColor"
@@ -152,13 +152,13 @@ export const RoiSimulator = () => {
                 transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}
                 className="drop-shadow-[0_0_8px_rgba(0,240,255,0.6)]"
               />
-              <motion.path
+              <m.path
                 animate={{ d: `M0,100 Q40,${curveHeight} 100,${curveHeight - 10} L100,100 Z` }}
                 fill="url(#sim-gradient)"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}
               />
               {/* Target dot */}
-              <motion.circle 
+              <m.circle 
                 animate={{ cy: curveHeight - 10 }}
                 cx="100" 
                 r="3" 

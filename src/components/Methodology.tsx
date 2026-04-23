@@ -85,7 +85,7 @@ export const Methodology = () => {
                 {/* Deliverable — "O que você recebe" */}
                 <div className="mt-auto pt-5 border-t border-white/[0.06]">
                   <div className="flex items-center gap-2">
-                    <ArrowRight className="w-3 h-3 text-neonCyan/60 flex-shrink-0" />
+                    <ArrowRight aria-hidden="true" className="w-3 h-3 text-neonCyan/60 flex-shrink-0" />
                     <span className="font-mono text-[10px] text-neonCyan/70 uppercase tracking-wider">
                       {item.deliverable}
                     </span>

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 
 interface CounterProps {
   target: string;
@@ -27,14 +27,14 @@ const Sparkline = ({ active, variant }: { active: boolean, variant: number }) =>
             <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
           </linearGradient>
         </defs>
-        <motion.path
+        <m.path
           d={`${d} L100,50 L0,50 Z`}
           fill={`url(#gradient-${variant})`}
           initial={{ opacity: 0 }}
           animate={active ? { opacity: 1 } : {}}
           transition={{ duration: 1.5, delay: 0.5 }}
         />
-        <motion.path
+        <m.path
           d={d}
           fill="none"
           stroke="currentColor"
@@ -85,7 +85,7 @@ export const AnimatedCounter = ({ target, label, detail, index = 0 }: CounterPro
   }, [isInView, target, numericMatch]);
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
@@ -105,6 +105,6 @@ export const AnimatedCounter = ({ target, label, detail, index = 0 }: CounterPro
         {label}
       </span>
       <span className="text-textMuted text-xs relative z-10">{detail}</span>
-    </motion.div>
+    </m.div>
   );
 };

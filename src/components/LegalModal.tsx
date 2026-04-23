@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 interface LegalModalProps {
@@ -87,15 +87,15 @@ export const LegalModal = ({ type, onClose }: LegalModalProps) => {
   return (
     <AnimatePresence>
       {type && (
-        <motion.div
+        <m.div
           className="fixed inset-0 z-[9500] flex items-center justify-center px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <motion.div className="absolute inset-0 bg-black/70 backdrop-blur-md" onClick={onClose} />
+          <m.div className="absolute inset-0 bg-black/70 backdrop-blur-md" onClick={onClose} />
 
-          <motion.div
+          <m.div
             className="relative w-full max-w-2xl max-h-[85vh] bg-background border border-white/[0.08] rounded-sm overflow-hidden shadow-2xl flex flex-col"
             initial={{ scale: 0.9, y: 40, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -114,7 +114,7 @@ export const LegalModal = ({ type, onClose }: LegalModalProps) => {
                 </span>
               </div>
               <button onClick={onClose} className="w-7 h-7 flex items-center justify-center text-white/30 hover:text-white hover:bg-white/5 rounded-sm transition-colors">
-                <X className="w-4 h-4" />
+                <X aria-hidden="true" className="w-4 h-4" />
               </button>
             </div>
 
@@ -142,8 +142,8 @@ export const LegalModal = ({ type, onClose }: LegalModalProps) => {
                 })}
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

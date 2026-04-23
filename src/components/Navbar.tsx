@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useContactForm } from './ContactFormContext';
 
@@ -21,7 +21,7 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav
+    <m.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -57,7 +57,7 @@ export const Navbar = () => {
             className="cta-shimmer text-sm font-mono text-black bg-neonCyan px-5 py-2.5 uppercase tracking-wider font-semibold hover:bg-white transition-colors flex items-center gap-2"
           >
             Diagnóstico Gratuito
-            <ArrowUpRight className="w-4 h-4" />
+            <ArrowUpRight aria-hidden="true" className="w-4 h-4" />
           </button>
         </div>
 
@@ -76,7 +76,7 @@ export const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -100,9 +100,9 @@ export const Navbar = () => {
                 Diagnóstico Gratuito
               </button>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </m.nav>
   );
 };

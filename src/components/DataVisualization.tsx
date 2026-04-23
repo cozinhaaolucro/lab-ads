@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 import { useRef, useEffect, useState, memo } from 'react';
 
 /* ─── Animated Counter Hook ─── */
@@ -22,7 +22,7 @@ const useTickingNumber = (end: number, decimals = 0, duration = 2000, active = f
 
 /* ─── Flowing Data Particles (reduced from 8 to 4) ─── */
 const HorizontalParticle = memo(({ delay = 0 }: { delay?: number }) => (
-  <motion.div
+  <m.div
     className="hidden md:block absolute w-1.5 h-1.5 rounded-full bg-neonCyan shadow-[0_0_8px_#00F0FF] will-change-transform"
     initial={{ left: '10%', top: '45%', opacity: 0, scale: 0.5 }}
     animate={{ 
@@ -35,7 +35,7 @@ const HorizontalParticle = memo(({ delay = 0 }: { delay?: number }) => (
 ));
 
 const VerticalParticle = memo(({ delay = 0 }: { delay?: number }) => (
-  <motion.div
+  <m.div
     className="md:hidden absolute w-1.5 h-1.5 rounded-full bg-neonCyan shadow-[0_0_8px_#00F0FF] will-change-transform"
     initial={{ top: '10%', left: '50%', opacity: 0, x: '-50%', scale: 0.5 }}
     animate={{ 
@@ -75,7 +75,7 @@ const ChaoticGraph = memo(({ active, isMobile }: { active: boolean; isMobile: bo
       <path d="M50,0 L50,70 M100,0 L100,70 M150,0 L150,70" stroke="rgba(255,255,255,0.05)" strokeWidth="0.5" strokeDasharray="2,2" />
 
       {/* Area Fill */}
-      <motion.path
+      <m.path
         fill="url(#chaosFill)"
         initial={{ opacity: 0 }}
         animate={active ? { opacity: 1, d: isMobile ? redArea[0] : redArea } : { opacity: 0 }}
@@ -85,7 +85,7 @@ const ChaoticGraph = memo(({ active, isMobile }: { active: boolean; isMobile: bo
         }}
       />
       {/* Red Line */}
-      <motion.path
+      <m.path
         d={redPaths[0]}
         stroke="#ef4444"
         strokeWidth="1.5"
@@ -100,7 +100,7 @@ const ChaoticGraph = memo(({ active, isMobile }: { active: boolean; isMobile: bo
         style={{ filter: 'drop-shadow(0 0 4px rgba(239,68,68,0.5))' }}
       />
       {/* Orange Line */}
-      <motion.path
+      <m.path
         d={orangePaths[0]}
         stroke="#f97316"
         strokeWidth="1"
@@ -133,7 +133,7 @@ const GrowthGraph = memo(({ active }: { active: boolean }) => (
     <path d="M50,0 L50,70 M100,0 L100,70 M150,0 L150,70" stroke="rgba(0,240,255,0.1)" strokeWidth="0.5" strokeDasharray="2,2" />
 
     {/* Fill Area */}
-    <motion.path
+    <m.path
       d="M0,65 L30,60 L60,52 L90,40 L120,30 L150,18 L180,10 L200,5 L200,70 L0,70 Z"
       fill="url(#growthFill)"
       initial={{ opacity: 0 }}
@@ -142,7 +142,7 @@ const GrowthGraph = memo(({ active }: { active: boolean }) => (
     />
     
     {/* Main Line */}
-    <motion.path
+    <m.path
       d="M0,65 L30,60 L60,52 L90,40 L120,30 L150,18 L180,10 L200,5"
       stroke="#00F0FF"
       strokeWidth="2.5"
@@ -154,7 +154,7 @@ const GrowthGraph = memo(({ active }: { active: boolean }) => (
     />
     
     {/* End Dot */}
-    <motion.circle
+    <m.circle
       cx="200" cy="5" r="3.5"
       fill="#fff"
       initial={{ opacity: 0, scale: 0 }}
@@ -167,7 +167,7 @@ const GrowthGraph = memo(({ active }: { active: boolean }) => (
 
 /* ─── Processing Node ─── */
 const ProcessingNode = memo(({ label, delay, isMobile }: { label: string; delay: number; isMobile: boolean }) => (
-  <motion.div
+  <m.div
     className="flex items-center gap-2.5 px-3 py-1.5 rounded-sm bg-neonCyan/[0.03] border border-neonCyan/10 backdrop-blur-sm"
     initial={{ opacity: 0, x: -5 }}
     animate={{ opacity: isMobile ? 1 : [0, 1, 1, 0.4], x: 0 }}
@@ -177,7 +177,7 @@ const ProcessingNode = memo(({ label, delay, isMobile }: { label: string; delay:
     <span className="font-mono text-[9px] lg:text-[10px] text-neonCyan/90 uppercase tracking-widest">
       {label}
     </span>
-  </motion.div>
+  </m.div>
 ));
 
 export const DataVisualization = () => {
@@ -261,7 +261,7 @@ export const DataVisualization = () => {
         {/* ═══ STAGE 2: PROCESSAMENTO ═══ */}
         <div className="flex flex-col items-center justify-center py-6 md:py-0 relative z-10">
           {/* Core Node */}
-          <motion.div
+          <m.div
             animate={isMobile ? {} : { boxShadow: ['0 0 30px rgba(0,240,255,0.1)', '0 0 60px rgba(0,240,255,0.2)', '0 0 30px rgba(0,240,255,0.1)'] }}
             transition={isMobile ? {} : { duration: 3, repeat: Infinity }}
             className="w-28 h-28 lg:w-36 lg:h-36 rounded-full border border-neonCyan/30 bg-surface/80 backdrop-blur-xl flex flex-col items-center justify-center relative shadow-2xl shadow-black/60"
@@ -269,7 +269,7 @@ export const DataVisualization = () => {
             <div className="absolute inset-2 rounded-full border border-neonCyan/20 border-dashed animate-[spin_8s_linear_infinite]" />
             <div className="absolute inset-0 rounded-full border border-neonCyan/10 border-dotted animate-[spin_12s_linear_infinite_reverse]" />
             <h3 className="font-display font-bold text-xl lg:text-3xl text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">LAB<span className="text-neonCyan">.</span></h3>
-          </motion.div>
+          </m.div>
           
           <div className="mt-8 flex flex-col items-center gap-3">
             <ProcessingNode label="modelagem matemática" delay={0} isMobile={isMobile} />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 interface FadeInProps {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ const directionMap = {
 export const FadeIn = ({ children, delay = 0, className = '', direction = 'up' }: FadeInProps) => {
   const offset = directionMap[direction];
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, x: offset.x, y: offset.y }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -26,12 +26,12 @@ export const FadeIn = ({ children, delay = 0, className = '', direction = 'up' }
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };
 
 export const StaggerContainer = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-  <motion.div
+  <m.div
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, margin: "-80px" }}
@@ -42,11 +42,11 @@ export const StaggerContainer = ({ children, className = '' }: { children: React
     className={className}
   >
     {children}
-  </motion.div>
+  </m.div>
 );
 
 export const StaggerItem = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-  <motion.div
+  <m.div
     variants={{
       hidden: { opacity: 0, y: 25 },
       visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
@@ -54,5 +54,5 @@ export const StaggerItem = ({ children, className = '' }: { children: React.Reac
     className={className}
   >
     {children}
-  </motion.div>
+  </m.div>
 );

@@ -1,5 +1,5 @@
 import { useRef, useState, type ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 export const MagneticButton = ({ children, className = '' }: { children: ReactNode; className?: string }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -22,7 +22,7 @@ export const MagneticButton = ({ children, className = '' }: { children: ReactNo
   };
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
@@ -31,6 +31,6 @@ export const MagneticButton = ({ children, className = '' }: { children: ReactNo
       className={`inline-block ${className}`}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };

@@ -1,7 +1,7 @@
 import { FadeIn } from './FadeIn';
 import { DataVisualization } from './DataVisualization';
 import { ChevronRight, CheckCircle2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { MagneticButton } from './MagneticButton';
 import { useContactForm } from './ContactFormContext';
 
@@ -25,7 +25,7 @@ export const Hero = () => {
       <div className="lg:col-span-5">
         <FadeIn delay={0.1}>
           <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-display font-bold text-white leading-[1.05] tracking-tight mb-8">
-            Seu Tráfego Pago<br />
+            Seu Tráfego Pago <br />
             <span className="text-gradient">está Gerando</span>{' '}
             <span className="text-neonCyan">Lucro?</span>
           </h1>
@@ -44,7 +44,7 @@ export const Hero = () => {
           <ul className="space-y-3 mb-12">
             {bullets.map((b, i) => (
               <li key={i} className="flex items-center gap-3 text-sm text-textMuted">
-                <CheckCircle2 className="w-4 h-4 text-neonCyan/70 flex-shrink-0" />
+                <CheckCircle2 aria-hidden="true" className="w-4 h-4 text-neonCyan/70 flex-shrink-0" />
                 <span>{b}</span>
               </li>
             ))}
@@ -60,7 +60,7 @@ export const Hero = () => {
                 className="group cta-shimmer inline-flex items-center gap-3 bg-neonCyan text-black px-8 py-4 font-mono font-bold uppercase tracking-wider hover:bg-white transition-colors glow-cyan"
               >
                 <span>Ver onde estou perdendo dinheiro</span>
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight aria-hidden="true" className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </MagneticButton>
             <a
@@ -69,12 +69,12 @@ export const Hero = () => {
               className="group inline-flex items-center gap-3 border border-white/10 text-textMuted px-8 py-4 font-mono text-sm uppercase tracking-wider hover:border-white/30 hover:text-white transition-all"
             >
               <span>Ver Metodologia</span>
-              <motion.span
+              <m.span
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               >
                 ↓
-              </motion.span>
+              </m.span>
             </a>
           </div>
           {/* Microcopy */}

@@ -55,7 +55,7 @@ export const QualifierSection = () => (
 
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-6">
-                <ShieldX className="w-5 h-5 text-white/30" />
+                <ShieldX aria-hidden="true" className="w-5 h-5 text-white/30" />
                 <span className="font-mono text-[10px] text-textMuted uppercase tracking-[0.2em]">
                   Filtro de entrada
                 </span>

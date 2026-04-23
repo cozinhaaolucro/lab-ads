@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { X, ArrowUpRight } from 'lucide-react';
 import { useContactForm } from './ContactFormContext';
 import { pushToDataLayer } from '../lib/gtm';
@@ -77,7 +77,7 @@ export const WhatsAppFloat = () => {
     <div ref={ref} className="fixed bottom-6 right-6 z-[8000]">
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 16, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.95 }}
@@ -95,7 +95,7 @@ export const WhatsAppFloat = () => {
                 <span className="font-mono text-[9px] text-white/40 uppercase tracking-widest">WhatsApp Direto</span>
               </div>
               <button onClick={() => setIsOpen(false)} className="w-6 h-6 flex items-center justify-center text-white/30 hover:text-white transition-colors">
-                <X className="w-3.5 h-3.5" />
+                <X aria-hidden="true" className="w-3.5 h-3.5" />
               </button>
             </div>
 
@@ -147,15 +147,15 @@ export const WhatsAppFloat = () => {
               >
                 <WppIcon c="w-4 h-4" />
                 Falar agora no WhatsApp
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <ArrowUpRight aria-hidden="true" className="w-3.5 h-3.5" />
               </button>
             </form>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* Float Button */}
-      <motion.button
+      <m.button
         onClick={() => setIsOpen(!isOpen)}
         id="wpp-float-toggle"
         className="relative w-14 h-14 rounded-full bg-neonGreen text-black flex items-center justify-center shadow-lg shadow-neonGreen/20 hover:shadow-neonGreen/40 hover:scale-105 transition-all"
@@ -167,16 +167,16 @@ export const WhatsAppFloat = () => {
         <span className="absolute inset-0 rounded-full bg-neonGreen animate-ping opacity-20" />
         <AnimatePresence mode="wait">
           {isOpen ? (
-            <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
-              <X className="w-6 h-6" />
-            </motion.span>
+            <m.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
+              <X aria-hidden="true" className="w-6 h-6" />
+            </m.span>
           ) : (
-            <motion.span key="w" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
+            <m.span key="w" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
               <WppIcon c="w-7 h-7" />
-            </motion.span>
+            </m.span>
           )}
         </AnimatePresence>
-      </motion.button>
+      </m.button>
     </div>
   );
 };

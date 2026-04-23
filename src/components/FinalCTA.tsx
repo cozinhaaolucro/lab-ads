@@ -52,7 +52,7 @@ export const FinalCTA = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-[shimmer_0.6s_ease-out_forwards]" />
               <span className="relative z-10">Quero meu diagnóstico gratuito</span>
-              <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform relative z-10" />
+              <ChevronRight aria-hidden="true" className="w-6 h-6 group-hover:translate-x-1 transition-transform relative z-10" />
             </button>
           </MagneticButton>
         </div>

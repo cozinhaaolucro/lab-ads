@@ -1,6 +1,6 @@
 import { FadeIn } from './FadeIn';
 import { ArrowUpRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useState, useRef, useCallback, memo } from 'react';
 
 const platforms = [
@@ -63,7 +63,7 @@ const PlatformCard = ({ p, i }: { p: typeof platforms[0]; i: number }) => {
   }, []);
 
   return (
-    <motion.div
+    <m.div
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => { setIsHovered(false); cancelAnimationFrame(rafRef.current); rafRef.current = 0; }}
@@ -96,7 +96,7 @@ const PlatformCard = ({ p, i }: { p: typeof platforms[0]; i: number }) => {
             </span>
           </div>
           <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-neonCyan/40 group-hover:bg-neonCyan/5 transition-all duration-300">
-            <ArrowUpRight className="w-5 h-5 text-white/20 group-hover:text-neonCyan transition-colors" />
+            <ArrowUpRight aria-hidden="true" className="w-5 h-5 text-white/20 group-hover:text-neonCyan transition-colors" />
           </div>
         </div>
 
@@ -119,7 +119,7 @@ const PlatformCard = ({ p, i }: { p: typeof platforms[0]; i: number }) => {
           ))}
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 

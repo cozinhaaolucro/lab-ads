@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useContactForm } from './ContactFormContext';
 import { pushToDataLayer } from '../lib/gtm';
@@ -131,13 +131,13 @@ export const ContactFormModal = () => {
       {isOpen && (
         <>
           {/* Mobile backdrop (optional but helpful for tap-to-close on small screens) */}
-          <motion.div 
+          <m.div 
             className="md:hidden fixed inset-0 z-[8999] bg-black/40 backdrop-blur-sm"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={close}
           />
           
-          <motion.div
+          <m.div
             className="fixed z-[9000] flex flex-col bg-background/95 backdrop-blur-xl border border-white/[0.08] rounded-xl shadow-[0_0_60px_rgba(0,0,0,0.6)] overflow-hidden"
             style={getStyle()}
             initial={windowSize.width < 768 ? { opacity: 0, y: '100%' } : { opacity: 0, scale: 0.95, y: 10 }}
@@ -162,7 +162,7 @@ export const ContactFormModal = () => {
                 onClick={close}
                 className="w-8 h-8 flex items-center justify-center text-white/30 hover:text-white hover:bg-white/5 rounded-sm transition-colors"
               >
-                <X className="w-4 h-4" />
+                <X aria-hidden="true" className="w-4 h-4" />
               </button>
             </div>
 
@@ -217,35 +217,35 @@ export const ContactFormModal = () => {
                   </p>
                 </>
               ) : (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="py-16 text-center"
                 >
-                  <motion.div
+                  <m.div
                     className="w-16 h-16 mx-auto mb-6 rounded-full border-2 border-neonCyan flex items-center justify-center"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', delay: 0.1 }}
                   >
                     <div className="w-6 h-6 rounded-full bg-neonCyan pulse-dot" />
-                  </motion.div>
+                  </m.div>
                   <h3 className="font-display font-bold text-xl text-white mb-2">
                     Solicitação Recebida!
                   </h3>
                   <p className="text-textMuted text-sm">Nossa equipe analisará seus dados e entrará em contato em breve.</p>
-                  <motion.div className="mt-6 h-1 bg-neonCyan/20 rounded-full overflow-hidden max-w-[200px] mx-auto">
-                    <motion.div
+                  <m.div className="mt-6 h-1 bg-neonCyan/20 rounded-full overflow-hidden max-w-[200px] mx-auto">
+                    <m.div
                       className="h-full bg-neonCyan"
                       initial={{ width: '0%' }}
                       animate={{ width: '100%' }}
                       transition={{ duration: 3, ease: 'linear' }}
                     />
-                  </motion.div>
-                </motion.div>
+                  </m.div>
+                </m.div>
               )}
             </div>
-          </motion.div>
+          </m.div>
         </>
       )}
     </AnimatePresence>
