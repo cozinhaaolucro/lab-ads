@@ -51,6 +51,17 @@ export const Navbar = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-neonCyan group-hover:w-full transition-all duration-300" />
             </a>
           ))}
+          <a
+            href="https://portal-labads.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="nav-link-portal"
+            className="text-sm font-mono text-textMuted hover:text-white transition-colors uppercase tracking-wider relative group flex items-center gap-1"
+          >
+            Portal
+            <ArrowUpRight className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+            <span className="absolute -bottom-1 left-0 w-0 h-px bg-neonCyan group-hover:w-full transition-all duration-300" />
+          </a>
           <button
             onClick={open}
             id="nav-cta-button"
@@ -93,6 +104,16 @@ export const Navbar = () => {
                   {link.label}
                 </a>
               ))}
+              <a
+                href="https://portal-labads.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="text-sm font-mono text-textMuted hover:text-white transition-colors uppercase tracking-wider px-2 flex items-center gap-1"
+              >
+                Portal
+                <ArrowUpRight className="w-3 h-3" />
+              </a>
               <button
                 onClick={() => { setMobileOpen(false); open(); }}
                 className="text-sm font-mono text-black bg-neonCyan px-5 py-3 uppercase tracking-wider font-semibold text-center mt-2"
