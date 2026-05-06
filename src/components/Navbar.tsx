@@ -25,9 +25,9 @@ export const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-16 xl:px-20 py-4 transition-all duration-500 ${scrolled
-          ? 'bg-background/80 backdrop-blur-xl border-b border-white/[0.06]'
-          : 'bg-transparent border-b border-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-500 ${scrolled
+        ? 'bg-background/80 backdrop-blur-xl border-b border-white/[0.06]'
+        : 'bg-transparent border-b border-transparent'
         }`}
     >
       <div className="max-w-[1440px] mx-auto flex items-center justify-between">

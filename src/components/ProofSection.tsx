@@ -7,7 +7,7 @@ const kpis = [
 ];
 
 export const ProofSection = () => (
-  <section id="resultados" className="px-6 md:px-12 lg:px-16 xl:px-20 py-16 md:py-24 max-w-[1440px] mx-auto relative">
+  <section id="resultados" className="px-6 py-16 md:py-24 max-w-[1440px] mx-auto relative">
     <FadeIn>
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-20 gap-6">
         <div>

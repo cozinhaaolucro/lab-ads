@@ -11,7 +11,7 @@ export const Footer = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-neonCyan/20 to-transparent" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[300px] bg-neonCyan/[0.02] blur-[120px] pointer-events-none rounded-full" />
 
-        <div className="container mx-auto px-6 md:px-12 lg:px-16 xl:px-20 relative z-10">
+        <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8 mb-20">
 
             {/* Brand */}

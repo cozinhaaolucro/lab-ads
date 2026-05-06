@@ -25,6 +25,10 @@
     @apply bg-neonCyan text-black;
   }
 
+  html.cursor-none,
+  html.cursor-none * {
+    cursor: none !important;
+  }
 
   /* Below-fold sections: skip rendering until near viewport */
   section:not(:first-of-type) {
@@ -85,6 +89,7 @@
   .pulse-dot {
     @apply relative;
   }
+
   .pulse-dot::after {
     content: '';
     @apply absolute inset-0 rounded-full bg-neonCyan;
@@ -95,6 +100,7 @@
   .section-line {
     @apply relative;
   }
+
   .section-line::after {
     content: '';
     @apply absolute left-0 bottom-0 h-px bg-gradient-to-r from-neonCyan/30 via-neonCyan/10 to-transparent;
@@ -106,36 +112,77 @@
    KEYFRAMES
    ============================== */
 @keyframes pulse-ring {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(2.5); opacity: 0; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 @keyframes scanline {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
 }
 
 /* Scanner line for QualifierSection — replaces framer-motion infinite */
 @keyframes scanVertical {
-  0% { top: 0%; }
-  50% { top: 100%; }
-  100% { top: 0%; }
+  0% {
+    top: 0%;
+  }
+
+  50% {
+    top: 100%;
+  }
+
+  100% {
+    top: 0%;
+  }
 }
 
 /* 3D grid floor flow for FinalCTA — replaces framer-motion infinite */
 @keyframes grid-flow {
-  0% { background-position: 0px 0px; }
-  100% { background-position: 0px 60px; }
+  0% {
+    background-position: 0px 0px;
+  }
+
+  100% {
+    background-position: 0px 60px;
+  }
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes fade-in-up {
@@ -143,6 +190,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -150,18 +198,35 @@
 }
 
 @keyframes data-flow {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 200% 50%;
+  }
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes counter-glow {
-  0%, 100% { text-shadow: 0 0 20px rgba(57, 255, 20, 0.1); }
-  50% { text-shadow: 0 0 40px rgba(57, 255, 20, 0.25); }
+
+  0%,
+  100% {
+    text-shadow: 0 0 20px rgba(57, 255, 20, 0.1);
+  }
+
+  50% {
+    text-shadow: 0 0 40px rgba(57, 255, 20, 0.25);
+  }
 }
 
 /* ==============================
@@ -214,6 +279,7 @@
   position: relative;
   overflow: hidden;
 }
+
 .cta-shimmer::after {
   content: '';
   position: absolute;
@@ -221,9 +287,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
   transform: translateX(-100%);
 }
+
 .cta-shimmer:hover::after {
   animation: shimmer 0.6s ease-out forwards;
 }
@@ -252,13 +319,16 @@
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #030305;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(57, 255, 20, 0.15);
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(57, 255, 20, 0.3);
 }

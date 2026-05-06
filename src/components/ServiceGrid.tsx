@@ -125,7 +125,7 @@ const PlatformCard = ({ p, i }: { p: typeof platforms[0]; i: number }) => {
 
 export const ServiceGrid = () => {
   return (
-    <section id="plataformas" className="px-6 md:px-12 lg:px-16 xl:px-20 py-16 md:py-24 bg-surface/30 relative overflow-hidden">
+    <section id="plataformas" className="px-6 py-16 md:py-24 bg-surface/30 relative overflow-hidden">
       {/* Background Accents */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />

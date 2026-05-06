@@ -34,7 +34,7 @@ const steps = [
 
 export const Methodology = () => {
   return (
-    <section id="metodologia" className="px-6 md:px-12 lg:px-16 xl:px-20 py-16 md:py-24 max-w-[1440px] mx-auto relative">
+    <section id="metodologia" className="px-6 py-16 md:py-24 max-w-[1440px] mx-auto relative">
       {/* Section accent line */}
       <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-neonCyan/20 via-transparent to-neonCyan/20" />
 
@@ -60,41 +60,41 @@ export const Methodology = () => {
         <div className="lg:w-2/3">
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-        {steps.map((item, i) => (
-          <StaggerItem key={i}>
-            <div className="glass-panel p-8 relative z-10 h-full group hover:bg-surface/90 transition-all duration-500 gradient-border flex flex-col overflow-hidden">
-              
-              {/* Glow on hover */}
-              <div className="absolute inset-0 bg-gradient-to-b from-neonCyan/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              {/* Matrix/Binary subtle hover effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.02] transition-opacity duration-700 pointer-events-none font-mono text-[8px] text-neonCyan break-all p-4 leading-[10px] [mask-image:linear-gradient(to_bottom,black,transparent)]">
-                {'10 '.repeat(200)}
-              </div>
+            {steps.map((item, i) => (
+              <StaggerItem key={i}>
+                <div className="glass-panel p-8 relative z-10 h-full group hover:bg-surface/90 transition-all duration-500 gradient-border flex flex-col overflow-hidden">
 
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="flex justify-between items-start mb-8">
-                  <span className="font-mono text-2xl font-semibold text-neonCyan/60">
-                    {item.step}
-                  </span>
-                  <item.icon className="w-5 h-5 text-white/20 group-hover:text-neonCyan transition-colors duration-300" />
-                </div>
-                <h3 className="text-white font-bold text-lg mb-3 font-display">{item.title}</h3>
-                <p className="text-sm text-textMuted leading-relaxed mb-6">{item.desc}</p>
+                  {/* Glow on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-neonCyan/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Deliverable — "O que você recebe" */}
-                <div className="mt-auto pt-5 border-t border-white/[0.06]">
-                  <div className="flex items-center gap-2">
-                    <ArrowRight aria-hidden="true" className="w-3 h-3 text-neonCyan/60 flex-shrink-0" />
-                    <span className="font-mono text-[10px] text-neonCyan/70 uppercase tracking-wider">
-                      {item.deliverable}
-                    </span>
+                  {/* Matrix/Binary subtle hover effect */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.02] transition-opacity duration-700 pointer-events-none font-mono text-[8px] text-neonCyan break-all p-4 leading-[10px] [mask-image:linear-gradient(to_bottom,black,transparent)]">
+                    {'10 '.repeat(200)}
+                  </div>
+
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex justify-between items-start mb-8">
+                      <span className="font-mono text-2xl font-semibold text-neonCyan/60">
+                        {item.step}
+                      </span>
+                      <item.icon className="w-5 h-5 text-white/20 group-hover:text-neonCyan transition-colors duration-300" />
+                    </div>
+                    <h3 className="text-white font-bold text-lg mb-3 font-display">{item.title}</h3>
+                    <p className="text-sm text-textMuted leading-relaxed mb-6">{item.desc}</p>
+
+                    {/* Deliverable — "O que você recebe" */}
+                    <div className="mt-auto pt-5 border-t border-white/[0.06]">
+                      <div className="flex items-center gap-2">
+                        <ArrowRight aria-hidden="true" className="w-3 h-3 text-neonCyan/60 flex-shrink-0" />
+                        <span className="font-mono text-[10px] text-neonCyan/70 uppercase tracking-wider">
+                          {item.deliverable}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </StaggerItem>
-        ))}
+              </StaggerItem>
+            ))}
           </StaggerContainer>
         </div>
       </div>

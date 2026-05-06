@@ -17,7 +17,7 @@ const qualifiers = [
 ];
 
 export const QualifierSection = () => (
-  <section id="qualificacao" className="px-6 md:px-12 lg:px-16 xl:px-20 py-16 md:py-24 max-w-[1440px] mx-auto relative overflow-hidden">
+  <section id="qualificacao" className="px-6 py-16 md:py-24 max-w-[1440px] mx-auto relative overflow-hidden">
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
       {/* Left — "Isso é pra você se:" */}
       <FadeIn>
