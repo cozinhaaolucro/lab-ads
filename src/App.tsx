@@ -2,7 +2,6 @@ import { lazy, Suspense } from 'react';
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { CustomCursor } from './components/CustomCursor';
 import { ContactFormProvider } from './components/ContactFormContext';
 
 // Lazy-load below-the-fold sections — they won't block initial paint
@@ -20,7 +19,6 @@ function App() {
     <ContactFormProvider>
       <LazyMotion features={domAnimation}>
         <div className="relative min-h-screen bg-background bg-grid-pattern bg-grid noise-bg scanline-overlay">
-          <CustomCursor />
           <Navbar />
 
           <main>

@@ -25,10 +25,6 @@
     @apply bg-neonCyan text-black;
   }
 
-  html.cursor-none,
-  html.cursor-none * {
-    cursor: none !important;
-  }
 
   /* Below-fold sections: skip rendering until near viewport */
   section:not(:first-of-type) {
