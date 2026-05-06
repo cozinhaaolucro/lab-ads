@@ -17,7 +17,7 @@ const points = [
 ];
 
 export const TransparencySection = () => (
-  <section className="px-6 py-24 md:py-32 max-w-[1440px] mx-auto relative">
+  <section className="px-6 md:px-12 lg:px-16 xl:px-20 py-24 md:py-32 max-w-[1440px] mx-auto relative">
     {/* Accent line */}
     <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-neonCyan/20 via-transparent to-neonCyan/20" />
 

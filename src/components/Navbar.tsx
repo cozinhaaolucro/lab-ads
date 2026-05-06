@@ -25,7 +25,7 @@ export const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 transition-all duration-500 ${scrolled
+      className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-16 xl:px-20 py-4 transition-all duration-500 ${scrolled
           ? 'bg-background/80 backdrop-blur-xl border-b border-white/[0.06]'
           : 'bg-transparent border-b border-transparent'
         }`}
@@ -52,13 +52,13 @@ export const Navbar = () => {
             </a>
           ))}
           <a
-            href="https://portal-labads.vercel.app"
+            href="https://engine.labads.com.br"
             target="_blank"
             rel="noopener noreferrer"
-            id="nav-link-portal"
+            id="nav-link-engine"
             className="text-sm font-mono text-textMuted hover:text-white transition-colors uppercase tracking-wider relative group flex items-center gap-1"
           >
-            Portal
+            Engine
             <ArrowUpRight className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
             <span className="absolute -bottom-1 left-0 w-0 h-px bg-neonCyan group-hover:w-full transition-all duration-300" />
           </a>
@@ -105,13 +105,13 @@ export const Navbar = () => {
                 </a>
               ))}
               <a
-                href="https://portal-labads.vercel.app"
+                href="https://engine.labads.com.br"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
                 className="text-sm font-mono text-textMuted hover:text-white transition-colors uppercase tracking-wider px-2 flex items-center gap-1"
               >
-                Portal
+                Engine
                 <ArrowUpRight className="w-3 h-3" />
               </a>
               <button

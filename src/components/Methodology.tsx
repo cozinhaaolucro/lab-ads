@@ -34,7 +34,7 @@ const steps = [
 
 export const Methodology = () => {
   return (
-    <section id="metodologia" className="px-6 py-16 md:py-24 max-w-[1440px] mx-auto relative">
+    <section id="metodologia" className="px-6 md:px-12 lg:px-16 xl:px-20 py-16 md:py-24 max-w-[1440px] mx-auto relative">
       {/* Section accent line */}
       <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-neonCyan/20 via-transparent to-neonCyan/20" />
 

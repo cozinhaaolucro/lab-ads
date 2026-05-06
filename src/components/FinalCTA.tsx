@@ -8,7 +8,7 @@ import { DecryptText } from './DecryptText';
 export const FinalCTA = () => {
   const { open } = useContactForm();
   return (
-  <section id="contato" className="px-6 py-16 md:py-24 relative overflow-hidden bg-background">
+  <section id="contato" className="px-6 md:px-12 lg:px-16 xl:px-20 py-16 md:py-24 relative overflow-hidden bg-background">
     <SystemLogs />
 
     {/* Ambient glow */}

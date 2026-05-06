@@ -17,7 +17,7 @@ const bullets = [
 export const Hero = () => {
   const { open } = useContactForm();
   return (
-  <section className="relative px-6 pt-32 pb-12 md:pt-36 md:pb-20 max-w-[1440px] mx-auto overflow-hidden">
+  <section className="relative px-6 md:px-12 lg:px-16 xl:px-20 pt-32 pb-12 md:pt-36 md:pb-20 max-w-[1440px] mx-auto overflow-hidden">
     {/* Ambient gradient orbs (Optimized for performance: using radial gradients instead of blur) */}
     <div className="absolute top-20 -left-40 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-[radial-gradient(circle,rgba(0,240,255,0.06)_0%,transparent_70%)] rounded-full pointer-events-none" />
     <div className="absolute bottom-0 right-0 w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-[radial-gradient(circle,rgba(0,240,255,0.05)_0%,transparent_70%)] rounded-full pointer-events-none" />
