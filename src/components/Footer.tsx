@@ -40,7 +40,7 @@ export const Footer = () => {
                 <h4 className="text-white/40 uppercase text-[10px] tracking-[0.2em] mb-4">Contato</h4>
                 <div className="space-y-3">
                   <a href="mailto:labads.br@gmail.com" className="block text-textMuted hover:text-neonCyan transition-colors text-xs">labads.br@gmail.com</a>
-                  <a href="https://wa.me/5541998498430" target="_blank" rel="noopener noreferrer" className="block text-textMuted hover:text-neonCyan transition-colors text-xs">WhatsApp Direto</a>
+                  <a href="https://wa.me/5541995446050" target="_blank" rel="noopener noreferrer" className="block text-textMuted hover:text-neonCyan transition-colors text-xs">WhatsApp Direto</a>
                 </div>
               </div>
               <div>

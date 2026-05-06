@@ -4,7 +4,7 @@ import { X, ArrowUpRight } from 'lucide-react';
 import { useContactForm } from './ContactFormContext';
 import { pushToDataLayer } from '../lib/gtm';
 
-const WPP = '5541998498430';
+const WPP = '5541995446050';
 
 const WppIcon = ({ c = '' }: { c?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={c}>
